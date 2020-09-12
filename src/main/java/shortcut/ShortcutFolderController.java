@@ -38,7 +38,7 @@ public class ShortcutFolderController {
 
 
     @FXML
-    AnchorPane anchorPaneViewAddFolder; // drag and drop
+    public AnchorPane anchorPaneViewAddFolder, viewShortcutFolder;
 
     @FXML
     ScrollPane scrollPaneViewFolder;
@@ -135,47 +135,33 @@ public class ShortcutFolderController {
 
     public void onUserWantToAddFolder (ActionEvent event) throws IOException {
         if (verifyIfEntryAddShortcutIsNotEmpty()) {
-            Path source  = Paths.get(filesAdd.get(0).getAbsolutePath().toString());
-            Path target = Paths.get("shortcut\\folder\\" + filesAdd.get(0).getName());
-
-            new Thread(() -> {
-                try {
-                    copyDirectory(source, target);
-                    resetColorOfItem();
-                    shortcutAddClicked = false;
-                    if (listShortcutFolder.isEmpty()) {
-                        database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), filesAdd.get(0).getName(), 1);
-                    } else {
-                        database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), filesAdd.get(0).getName(), listShortcutFolder.get(listShortcutFolder.size() - 1).pos + 1);
-                    }
-
-                    listShortcutFolder.add(database.getLastShortcutFolderElement());
-                    showPictureButton(buttonAddFolder, "picture/add.png");
-                    shortcutAddClicked = false;
-
-                    anchorPaneViewAddFolder.setVisible(false);
-                    scrollPaneViewFolder.setVisible(true);
-                } catch (Exception exp) {
-                    FileSystemUtils.deleteRecursively(new File("shortcut\\folder\\" + filesAdd.get(0).getName()));
-                    buttonValidAddFolder.setVisible(false);
-                    label.setText("Glisser et d\u00e9poser le fichier");
-                    picture.setImage(null);
-                    anchorPaneViewAddFolder.setVisible(true);
-                    buttonDelFolder.setVisible(false);
-                    scrollPaneViewFolder.setVisible(false);
-                    shortcutAddClicked = true;
-                    showPictureButton(buttonAddFolder, "picture/cancel.png");
-                    System.out.println(exp.getMessage());
+            try {
+                resetColorOfItem();
+                shortcutAddClicked = false;
+                if (listShortcutFolder.isEmpty()) {
+                    database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), filesAdd.get(0).getName(), 1);
+                } else {
+                    database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), filesAdd.get(0).getName(), listShortcutFolder.get(listShortcutFolder.size() - 1).pos + 1);
                 }
-            }).start();
+
+                listShortcutFolder.add(database.getLastShortcutFolderElement());
+                showPictureButton(buttonAddFolder, "picture/add.png");
+                shortcutAddClicked = false;
+
+                anchorPaneViewAddFolder.setVisible(false);
+                scrollPaneViewFolder.setVisible(true);
+            } catch (Exception exp) {
+                buttonValidAddFolder.setVisible(false);
+                label.setText("Glisser et d\u00e9poser le fichier");
+                picture.setImage(null);
+                anchorPaneViewAddFolder.setVisible(true);
+                buttonDelFolder.setVisible(false);
+                scrollPaneViewFolder.setVisible(false);
+                shortcutAddClicked = true;
+                showPictureButton(buttonAddFolder, "picture/cancel.png");
+                System.out.println(exp.getMessage());
+            }
         }
-    }
-
-
-    public static void copyDirectory(Path source, Path target) throws IOException {
-        CopyDirectory copy = new CopyDirectory(source, target);
-        Files.walkFileTree(source, copy);
-
     }
 
     public void onUserClickToShowAddFolder( ActionEvent event) {
@@ -200,14 +186,9 @@ public class ShortcutFolderController {
     public void onUserClickToDelShortcut (ActionEvent event) {
         Platform.runLater(() -> {
             if (shortcutFolderSelected != null) {
-                try {
-                    database.deleteShortcutFolder(shortcutFolderSelected);
-                    listShortcutFolder.removeIf(shortcutFileFolder -> shortcutFileFolder.equals(shortcutFolderSelected));
-                    Files.delete(Paths.get("shortcut\\folder\\" + shortcutFolderSelected.text));
-                    shortcutFolderSelected = null;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                database.deleteShortcutFolder(shortcutFolderSelected);
+                listShortcutFolder.removeIf(shortcutFileFolder -> shortcutFileFolder.equals(shortcutFolderSelected));
+                shortcutFolderSelected = null;
             }
         });
 

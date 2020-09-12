@@ -1,13 +1,15 @@
 package element;
 
-//import com.sun.org.apache.xpath.internal.objects.XNull;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import singleton.SingletonShortcut;
 
 import java.awt.*;
@@ -49,10 +51,14 @@ public class ShortcutElement {
                     try {
                         SingletonShortcut.shortcutInternetController.database.setPositionOfShortcut(this, SingletonShortcut.shortcutInternetController.listShortcut);
                         SingletonShortcut.shortcutInternetController.setToFirstPlace(this);
-
+                        SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
                         SingletonShortcut.shortcutInternetController.shortcutElementSelected = null;
                         SingletonShortcut.shortcutInternetController.buttonDelShortcut.setVisible(false);
                         SingletonShortcut.shortcutInternetController.buttonEditShortcut.setVisible(false);
+
+                        Node source = (Node) event.getSource();
+                        Stage stage = (Stage) source.getScene().getWindow();
+                        stage.setHeight(0.05);
 
                         Platform.runLater(() -> {
                             try {

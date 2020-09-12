@@ -4,11 +4,13 @@ import iconExtract.JIconExtract;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import singleton.SingletonShortcut;
 
 import java.awt.image.BufferedImage;
@@ -52,11 +54,15 @@ public class ShortcutApp {
                         SingletonShortcut.shortcutAppController.shortcutAppSelected = null;
                         SingletonShortcut.shortcutAppController.buttonDelApp.setVisible(false);
 
+                        Node source = (Node) event.getSource();
+                        Stage stage = (Stage) source.getScene().getWindow();
+                        stage.setHeight(0.05);
+
                         Platform.runLater(() -> {
                             try {
                                 url = url.replace("\\", "\\\\");
                                 String extension = url.substring(url.lastIndexOf(".") + 1);
-                                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "shortcut\\application\\" + text + "." +extension);
+                                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", url);
                                 pb.start();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -79,8 +85,8 @@ public class ShortcutApp {
     }
 
     public void setValue (String text) throws FileNotFoundException {
-        BufferedImage image = JIconExtract.getIconForFile(40,40,url);
         Platform.runLater(() -> {
+            BufferedImage image = JIconExtract.getIconForFile(40,40,url);
             Image img = SwingFXUtils.toFXImage(image, null);
 
             Label label = (Label) view.lookup("#label");

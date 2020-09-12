@@ -247,6 +247,4 @@ public class Database {
             System.out.println(exp.getMessage());
         }
     }
-
-
 }

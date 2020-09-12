@@ -4,11 +4,13 @@ import iconExtract.JIconExtract;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import singleton.SingletonShortcut;
 
 import java.awt.*;
@@ -49,16 +51,17 @@ public class ShortcutFileFolder {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     try {
                         SingletonShortcut.shortcutFolderController.database.setPositionOfShortcutFolder(this, SingletonShortcut.shortcutFolderController.listShortcutFolder);
-
                         SingletonShortcut.shortcutFolderController.setToFirstPlace(this);
-
-
                         SingletonShortcut.shortcutFolderController.shortcutFolderSelected = null;
                         SingletonShortcut.shortcutFolderController.buttonDelFolder.setVisible(false);
 
+                        Node source = (Node) event.getSource();
+                        Stage stage = (Stage) source.getScene().getWindow();
+                        stage.setHeight(0.05);
+
                         Platform.runLater(() -> {
                             try {
-                                Desktop.getDesktop().open(new File("shortcut\\folder\\" + text));
+                                Desktop.getDesktop().open(new File(url));
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

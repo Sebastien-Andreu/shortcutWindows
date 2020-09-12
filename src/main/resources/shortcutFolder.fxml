@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="test1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="430.0" style="-fx-background-color: #2c2f33;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shortcut.ShortcutFolderController">
+<AnchorPane fx:id="viewShortcutFolder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="430.0" style="-fx-background-color: #2c2f33;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shortcut.ShortcutFolderController">
     <children>
         <HBox alignment="CENTER_LEFT" onMouseClicked="#onMouseClickedHead" prefHeight="49.0" prefWidth="450.0" style="-fx-background-color: #23272a; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;">
             <children>
@@ -42,9 +42,9 @@
                 <Insets left="10.0" />
             </padding>
         </HBox>
-        <ScrollPane fx:id="scrollPaneViewFolder" layoutY="49.0" prefHeight="174.0" prefWidth="477.0" style="-fx-background-color: transparent; -fx-border-color: #2c2f33; -fx-border-width: 0 0 3 0;">
+        <ScrollPane fx:id="scrollPaneViewFolder" layoutY="49.0" prefHeight="259.0" prefWidth="477.0" style="-fx-background-color: transparent; -fx-border-color: #2c2f33; -fx-border-width: 0 0 3 0;">
             <content>
-                <FlowPane fx:id="showFolder" prefHeight="169.0" prefWidth="450.0" style="-fx-background-color: #2c2f33; -fx-hgap: 20; -fx-vgap: 12;" />
+                <FlowPane fx:id="showFolder" prefHeight="254.0" prefWidth="450.0" style="-fx-background-color: #2c2f33; -fx-hgap: 20; -fx-vgap: 12;" />
             </content>
         </ScrollPane>
         <AnchorPane fx:id="anchorPaneViewAddFolder" layoutY="50.0" onDragDropped="#onDragDropped" onDragOver="#onDragOver" prefHeight="163.0" prefWidth="450.0" visible="false">

@@ -36,7 +36,7 @@ import java.util.Objects;
 public class ShortcutAppController {
 
     @FXML
-    AnchorPane anchorPaneViewAddApp;
+    public AnchorPane anchorPaneViewAddApp, viewShortcutApplication;
 
     @FXML
     ScrollPane scrollPaneViewApp;
@@ -133,19 +133,19 @@ public class ShortcutAppController {
     public void onUserWantToAddApp (ActionEvent event) {
         if (verifyIfEntryAddShortcutIsNotEmpty()) {
             Path source = Paths.get(filesAdd.get(0).getAbsolutePath());
-            Path target = Paths.get("shortcut\\application\\" + filesAdd.get(0).getName());
+            File target = new File("shortcut\\application\\" + filesAdd.get(0).getName());
 
             try {
-                Files.copy(source, target);
+                Files.copy(source, Paths.get(String.valueOf(target)));
                 resetColorOfItem();
                 shortcutAddClicked = false;
                 final int lastPeriodPos = filesAdd.get(0).getName().lastIndexOf('.');
                 String name = filesAdd.get(0).getName().substring(0, lastPeriodPos);
 
                 if (listShortcutApp.isEmpty()) {
-                    database.addNewShortcutApp(filesAdd.get(0).getAbsolutePath(), name, 1);
+                    database.addNewShortcutApp(target.getAbsolutePath(), name, 1);
                 } else {
-                    database.addNewShortcutApp(filesAdd.get(0).getAbsolutePath(), name, listShortcutApp.get(listShortcutApp.size() - 1).pos + 1);
+                    database.addNewShortcutApp(target.getAbsolutePath(), name, listShortcutApp.get(listShortcutApp.size() - 1).pos + 1);
                 }
 
                 listShortcutApp.add(database.getLastShortcutApp());

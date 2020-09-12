@@ -26,7 +26,7 @@ import java.util.*;
 public class ShortcutInternetController {
 
     @FXML
-    AnchorPane anchorPaneViewAddShortcut;
+    public AnchorPane viewShortcutInternet, anchorPaneViewAddShortcut;
 
     @FXML
     ScrollPane scrollPaneViewShortcut;
