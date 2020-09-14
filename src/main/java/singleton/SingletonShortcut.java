@@ -9,5 +9,7 @@ public class SingletonShortcut {
     public static ShortcutMostUsed shortcutMostUsed;
     public static ShortcutController shortcutController;
 
+    public static boolean userWantToAddShortcut = false;
+
     private SingletonShortcut () {}
 }

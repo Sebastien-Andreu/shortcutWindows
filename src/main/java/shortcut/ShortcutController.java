@@ -15,7 +15,12 @@ public class ShortcutController {
     public void initialize () {
         try {
             SingletonShortcut.shortcutController = this;
-            setViewInaccessible();
+
+            if (SingletonShortcut.shortcutInternetController.listShortcut.size() < 4) {
+                setViewAccessible();
+            } else {
+                setViewInaccessible();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

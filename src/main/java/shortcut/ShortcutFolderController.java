@@ -150,6 +150,7 @@ public class ShortcutFolderController {
 
                 anchorPaneViewAddFolder.setVisible(false);
                 scrollPaneViewFolder.setVisible(true);
+                SingletonShortcut.userWantToAddShortcut = false;
             } catch (Exception exp) {
                 buttonValidAddFolder.setVisible(false);
                 label.setText("Glisser et d\u00e9poser le fichier");
@@ -166,6 +167,7 @@ public class ShortcutFolderController {
 
     public void onUserClickToShowAddFolder( ActionEvent event) {
         if (!shortcutAddClicked) {
+            SingletonShortcut.userWantToAddShortcut = true;
             buttonValidAddFolder.setVisible(false);
             label.setText("Glisser et d\u00e9poser le fichier");
             picture.setImage(null);
@@ -175,6 +177,7 @@ public class ShortcutFolderController {
             shortcutAddClicked = true;
             showPictureButton(buttonAddFolder, "picture/cancel.png");
         } else {
+            SingletonShortcut.userWantToAddShortcut = false;
             resetColorOfItem();
             anchorPaneViewAddFolder.setVisible(false);
             scrollPaneViewFolder.setVisible(true);

@@ -42,6 +42,7 @@ public class ShortcutElementMostUsed extends ShortcutElement{
                     try {
                         for (ShortcutElement element : SingletonShortcut.shortcutInternetController.listShortcut) {
                             if (element.url.equals(url) && element.text.equals(text)) {
+                                SingletonShortcut.shortcutMostUsed.refreshView = true;
                                 SingletonShortcut.shortcutInternetController.database.setPositionOfShortcut(element, SingletonShortcut.shortcutInternetController.listShortcut);
                                 Platform.runLater(() -> {SingletonShortcut.shortcutInternetController.setToFirstPlace(element);});
                                 SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();

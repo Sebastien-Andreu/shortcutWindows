@@ -28,6 +28,8 @@ public class ShortcutMostUsed {
 
     public ObservableList<ShortcutElementMostUsed> listShortcutInternet = FXCollections.observableArrayList();
 
+    public boolean refreshView = true;
+
 
     @FXML
     public void initialize () {
@@ -35,13 +37,6 @@ public class ShortcutMostUsed {
             SingletonShortcut.shortcutMostUsed = this;
             this.listShortcutInternet.addListener(this::eventListenerShortcut);
             showListOfShortcutInternetMostUsed();
-
-//            swipeDown.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_ENTERED, evt -> {
-//                SingletonShortcut.shortcutController.transition.stop();
-//                SingletonShortcut.shortcutController.setSecondTransition();
-//                SingletonShortcut.shortcutController.setViewAccessible();
-//                SingletonShortcut.shortcutController.transition.play();
-//            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,19 +58,25 @@ public class ShortcutMostUsed {
     }
 
     public void showListOfShortcutInternetMostUsed () {
-        listShortcutInternet.clear();
-        Database database = new Database();
-        List<ShortcutElement> list = database.getListOfShortcut();
-        for ( int i = 0; i < 4; ++i) {
-            listShortcutInternet.add(new ShortcutElementMostUsed(list.get(i).text, list.get(i).url));
+        if (listShortcutInternet.size() < 4) {
+            refreshView = true;
+        }
+
+        if (refreshView) {
+            listShortcutInternet.clear();
+            Database database = new Database();
+            List<ShortcutElement> list = database.getListOfShortcut();
+
+            if (list.size() >= 4) {
+                for ( int i = 0; i < 4; ++i) {
+                    listShortcutInternet.add(new ShortcutElementMostUsed(list.get(i).text, list.get(i).url));
+                }
+            }
+            refreshView = false;
         }
     }
 
     public void resetColorOfItem () {
         listShortcutInternet.forEach(ShortcutElementMostUsed::resetColor);
-    }
-
-    public void onUserWantToShowAllShortcut(MouseEvent event) {
-
     }
 }

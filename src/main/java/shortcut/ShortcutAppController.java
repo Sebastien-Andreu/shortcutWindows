@@ -155,6 +155,7 @@ public class ShortcutAppController {
 
                 anchorPaneViewAddApp.setVisible(false);
                 scrollPaneViewApp.setVisible(true);
+                SingletonShortcut.userWantToAddShortcut = false;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -163,6 +164,7 @@ public class ShortcutAppController {
 
     public void onUserClickToShowAddApp ( ActionEvent event) {
         if (!shortcutAddClicked) {
+            SingletonShortcut.userWantToAddShortcut = true;
             buttonValidAddApp.setVisible(false);
             label.setText("Glisser et d\u00e9poser l'application");
             picture.setImage(null);
@@ -172,6 +174,7 @@ public class ShortcutAppController {
             shortcutAddClicked = true;
             showPictureButton(buttonAddApp, "picture/cancel.png");
         } else {
+            SingletonShortcut.userWantToAddShortcut = false;
             resetColorOfItem();
             anchorPaneViewAddApp.setVisible(false);
             scrollPaneViewApp.setVisible(true);

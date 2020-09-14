@@ -1,5 +1,6 @@
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -89,7 +90,11 @@ public class Shortcut extends Application {
             anchorShortcut.setTranslateY(0);
         });
 
-        setFirstTransition();
+        if (SingletonShortcut.shortcutInternetController.listShortcut.isEmpty()) {
+            setTransitionWhenEmpty();
+        } else {
+            setFirstTransition();
+        }
 
         scene.setFill(Color.TRANSPARENT);
 
@@ -97,24 +102,37 @@ public class Shortcut extends Application {
         this.stage.show();
 
         scene.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_ENTERED, evt ->  {
-            transition.stop();
-            setFirstTransition();
-            stage.setHeight(0.05);
-            stage.setWidth(441);
-            SingletonShortcut.shortcutController.setViewInaccessible();
-            transition.play();
+            if (!SingletonShortcut.userWantToAddShortcut) {
+                transition.stop();
+                if (SingletonShortcut.shortcutInternetController.listShortcut.size() < 4) {
+                    setTransitionWhenEmpty();
+                    SingletonShortcut.shortcutController.setViewAccessible();
+                } else {
+                    setFirstTransition();
+                    Platform.runLater(() -> {
+                        SingletonShortcut.shortcutController.setViewInaccessible();
+                        SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
+                    });
+                }
+
+                stage.setHeight(0.05);
+                stage.setWidth(441);
+                transition.play();
+            }
         });
 
         scene.addEventHandler(MouseEvent.MOUSE_EXITED, evt ->  {
-            transition.stop();
-            SingletonShortcut.shortcutController.setViewInaccessible();
-            stage.setHeight(0.05);
-            stage.setWidth(0.05);
-            setInitializedTransition();
-            transition.play();
+            if (!SingletonShortcut.userWantToAddShortcut) {
+                transition.stop();
+                SingletonShortcut.shortcutController.setViewInaccessible();
+                stage.setHeight(0.05);
+                stage.setWidth(0.05);
+                setInitializedTransition();
+                transition.play();
+            }
         });
 
-        SingletonShortcut.shortcutMostUsed.swipeDown.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_ENTERED, evt -> {
+        SingletonShortcut.shortcutMostUsed.swipeDown.addEventHandler(MouseEvent.MOUSE_CLICKED, evt -> {
             transition.stop();
             setSecondTransition();
             SingletonShortcut.shortcutController.setViewAccessible();
@@ -143,6 +161,15 @@ public class Shortcut extends Application {
     public void setSecondTransition () {
         transition = new TranslateTransition();
         transition.setFromY(130);
+        transition.setToY(screenHeight);
+
+        transition.setDuration(Duration.seconds(0.0001));
+        transition.setNode(anchorShortcut);
+    }
+
+    public void setTransitionWhenEmpty () {
+        transition = new TranslateTransition();
+        transition.setFromY(0.05);
         transition.setToY(screenHeight);
 
         transition.setDuration(Duration.seconds(0.0001));
