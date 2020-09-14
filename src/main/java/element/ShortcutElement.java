@@ -51,6 +51,7 @@ public class ShortcutElement {
                     try {
                         SingletonShortcut.shortcutInternetController.database.setPositionOfShortcut(this, SingletonShortcut.shortcutInternetController.listShortcut);
                         SingletonShortcut.shortcutInternetController.setToFirstPlace(this);
+                        SingletonShortcut.shortcutMostUsed.refreshView = true;
                         SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
                         SingletonShortcut.shortcutInternetController.shortcutElementSelected = null;
                         SingletonShortcut.shortcutInternetController.buttonDelShortcut.setVisible(false);

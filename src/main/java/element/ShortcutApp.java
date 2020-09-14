@@ -87,13 +87,15 @@ public class ShortcutApp {
     public void setValue (String text) throws FileNotFoundException {
         Platform.runLater(() -> {
             BufferedImage image = JIconExtract.getIconForFile(40,40,url);
-            Image img = SwingFXUtils.toFXImage(image, null);
+            if (image != null) {
+                Image img = SwingFXUtils.toFXImage(image, null);
 
-            Label label = (Label) view.lookup("#label");
-            label.setText(text);
+                Label label = (Label) view.lookup("#label");
+                label.setText(text);
 
-            ImageView imgView = (ImageView) view.lookup("#picture");
-            imgView.setImage(img);
+                ImageView imgView = (ImageView) view.lookup("#picture");
+                imgView.setImage(img);
+            }
         });
     }
 }

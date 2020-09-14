@@ -1,7 +1,7 @@
 package shortcut;
 
 import database.Database;
-import element.ShortcutFileFolder;
+import element.ShortcutFolder;
 import iconExtract.JIconExtract;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -21,16 +21,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import org.springframework.util.FileSystemUtils;
 import singleton.SingletonShortcut;
-import utils.CopyDirectory;
 
+import javax.swing.filechooser.FileSystemView;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
@@ -55,14 +51,14 @@ public class ShortcutFolderController {
     @FXML
     public Label label;
 
-    public ShortcutFileFolder shortcutFolderSelected;
+    public ShortcutFolder shortcutFolderSelected;
     private boolean shortcutAddClicked = false;
     public boolean setInFirstPlace = false;
 
 
     public Database database;
 
-    public ObservableList<ShortcutFileFolder> listShortcutFolder = FXCollections.observableArrayList();
+    public ObservableList<ShortcutFolder> listShortcutFolder = FXCollections.observableArrayList();
 
     public static List<File> filesAdd;
 
@@ -86,7 +82,7 @@ public class ShortcutFolderController {
         }
     }
 
-    private void eventListenerShortcut(ListChangeListener.Change<? extends ShortcutFileFolder> change) {
+    private void eventListenerShortcut(ListChangeListener.Change<? extends ShortcutFolder> change) {
         while(change.next()) {
             if (change.wasAdded()) {
                 final Node[] toFirstPlace = new Node[1];
@@ -120,13 +116,13 @@ public class ShortcutFolderController {
 
     public void initializeListOfShortCutFolder () {
         showFolder.getChildren().clear();
-        for (ShortcutFileFolder element: database.getListOfShortcutFolder()) {
+        for (ShortcutFolder element: database.getListOfShortcutFolder()) {
             listShortcutFolder.add(element);
         }
     }
 
     public void resetColorOfItem () {
-        listShortcutFolder.forEach(ShortcutFileFolder::resetColor);
+        listShortcutFolder.forEach(ShortcutFolder::resetColor);
     }
 
     private boolean verifyIfEntryAddShortcutIsNotEmpty () {
@@ -139,9 +135,9 @@ public class ShortcutFolderController {
                 resetColorOfItem();
                 shortcutAddClicked = false;
                 if (listShortcutFolder.isEmpty()) {
-                    database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), filesAdd.get(0).getName(), 1);
+                    database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), FileSystemView.getFileSystemView().getSystemDisplayName(filesAdd.get(0)), 1);
                 } else {
-                    database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), filesAdd.get(0).getName(), listShortcutFolder.get(listShortcutFolder.size() - 1).pos + 1);
+                    database.addNewShortcutFolder(filesAdd.get(0).getAbsolutePath(), FileSystemView.getFileSystemView().getSystemDisplayName(filesAdd.get(0)), listShortcutFolder.get(listShortcutFolder.size() - 1).pos + 1);
                 }
 
                 listShortcutFolder.add(database.getLastShortcutFolderElement());
@@ -150,7 +146,7 @@ public class ShortcutFolderController {
 
                 anchorPaneViewAddFolder.setVisible(false);
                 scrollPaneViewFolder.setVisible(true);
-                SingletonShortcut.userWantToAddShortcut = false;
+                SingletonShortcut.freezeApp = false;
             } catch (Exception exp) {
                 buttonValidAddFolder.setVisible(false);
                 label.setText("Glisser et d\u00e9poser le fichier");
@@ -167,7 +163,7 @@ public class ShortcutFolderController {
 
     public void onUserClickToShowAddFolder( ActionEvent event) {
         if (!shortcutAddClicked) {
-            SingletonShortcut.userWantToAddShortcut = true;
+            SingletonShortcut.freezeApp = true;
             buttonValidAddFolder.setVisible(false);
             label.setText("Glisser et d\u00e9poser le fichier");
             picture.setImage(null);
@@ -177,7 +173,7 @@ public class ShortcutFolderController {
             shortcutAddClicked = true;
             showPictureButton(buttonAddFolder, "picture/cancel.png");
         } else {
-            SingletonShortcut.userWantToAddShortcut = false;
+            SingletonShortcut.freezeApp = false;
             resetColorOfItem();
             anchorPaneViewAddFolder.setVisible(false);
             scrollPaneViewFolder.setVisible(true);
@@ -190,7 +186,7 @@ public class ShortcutFolderController {
         Platform.runLater(() -> {
             if (shortcutFolderSelected != null) {
                 database.deleteShortcutFolder(shortcutFolderSelected);
-                listShortcutFolder.removeIf(shortcutFileFolder -> shortcutFileFolder.equals(shortcutFolderSelected));
+                listShortcutFolder.removeIf(shortcutFolder -> shortcutFolder.equals(shortcutFolderSelected));
                 shortcutFolderSelected = null;
             }
         });
@@ -203,7 +199,7 @@ public class ShortcutFolderController {
         resetColorOfItem();
     }
 
-    public void setToFirstPlace (ShortcutFileFolder shortcutFile) {
+    public void setToFirstPlace (ShortcutFolder shortcutFile) {
         shortcutFolderSelected = shortcutFile;
         setInFirstPlace = true;
         listShortcutFolder.remove(shortcutFile);
@@ -217,7 +213,7 @@ public class ShortcutFolderController {
         BufferedImage image = JIconExtract.getIconForFile(60,60,filesAdd.get(0));
         Platform.runLater(() -> {
             Image img = SwingFXUtils.toFXImage(image, null);
-            label.setText(filesAdd.get(0).getName());
+            label.setText(FileSystemView.getFileSystemView().getSystemDisplayName(filesAdd.get(0)));
             picture.setImage(img);
         });
     }

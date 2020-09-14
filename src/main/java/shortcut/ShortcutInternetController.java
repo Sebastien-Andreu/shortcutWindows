@@ -161,13 +161,13 @@ public class ShortcutInternetController {
 
             anchorPaneViewAddShortcut.setVisible(false);
             scrollPaneViewShortcut.setVisible(true);
-            SingletonShortcut.userWantToAddShortcut = false;
+            SingletonShortcut.freezeApp = false;
         }
     }
 
     public void onUserClickToShowAddShortcut (ActionEvent event) {
         if (!shortcutAddClicked) {
-            SingletonShortcut.userWantToAddShortcut = true;
+            SingletonShortcut.freezeApp = true;
             inputAddText.clear();
             inputAddUrl.clear();
 
@@ -178,7 +178,7 @@ public class ShortcutInternetController {
             shortcutAddClicked = true;
             showPictureButton(buttonAddShortcut, "picture/cancel.png");
         } else {
-            SingletonShortcut.userWantToAddShortcut = false;
+            SingletonShortcut.freezeApp = false;
             resetColorOfItem();
             anchorPaneViewAddShortcut.setVisible(false);
             scrollPaneViewShortcut.setVisible(true);

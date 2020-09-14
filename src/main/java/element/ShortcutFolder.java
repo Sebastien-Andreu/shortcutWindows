@@ -6,6 +6,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -18,17 +19,20 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ShortcutFileFolder {
+public class ShortcutFolder {
 
     public String url,text;
     public int id, pos;
     public AnchorPane view;
+    Tooltip tp;
 
-    public ShortcutFileFolder(int id, int pos, String url, String text) {
+
+    public ShortcutFolder(int id, int pos, String url, String text) {
         this.id = id;
         this.pos = pos;
         this.url = url;
         this.text = text;
+        tp = new Tooltip();
     }
 
     public void resetColor () {
@@ -85,13 +89,15 @@ public class ShortcutFileFolder {
     public void setValue () {
         BufferedImage image = JIconExtract.getIconForFile(128,128,url);
         Platform.runLater(() -> {
-            Image img = SwingFXUtils.toFXImage(image, null);
+            if (image != null) {
+                Image img = SwingFXUtils.toFXImage(image, null);
 
-            Label label = (Label) view.lookup("#label");
-            label.setText(text);
+                Label label = (Label) view.lookup("#label");
+                label.setText(text);
 
-            ImageView imgView = (ImageView) view.lookup("#picture");
-            imgView.setImage(img);
+                ImageView imgView = (ImageView) view.lookup("#picture");
+                imgView.setImage(img);
+            }
         });
     }
 }

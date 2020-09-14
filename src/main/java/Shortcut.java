@@ -1,7 +1,6 @@
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -102,7 +101,7 @@ public class Shortcut extends Application {
         this.stage.show();
 
         scene.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_ENTERED, evt ->  {
-            if (!SingletonShortcut.userWantToAddShortcut) {
+            if (!SingletonShortcut.freezeApp) {
                 transition.stop();
                 if (SingletonShortcut.shortcutInternetController.listShortcut.size() < 4) {
                     setTransitionWhenEmpty();
@@ -122,7 +121,7 @@ public class Shortcut extends Application {
         });
 
         scene.addEventHandler(MouseEvent.MOUSE_EXITED, evt ->  {
-            if (!SingletonShortcut.userWantToAddShortcut) {
+            if (!SingletonShortcut.freezeApp) {
                 transition.stop();
                 SingletonShortcut.shortcutController.setViewInaccessible();
                 stage.setHeight(0.05);

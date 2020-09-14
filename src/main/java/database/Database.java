@@ -2,7 +2,7 @@ package database;
 
 import element.ShortcutApp;
 import element.ShortcutElement;
-import element.ShortcutFileFolder;
+import element.ShortcutFolder;
 import javafx.collections.ObservableList;
 
 import java.io.File;
@@ -42,13 +42,13 @@ public class Database {
         return list;
     }
 
-    public List<ShortcutFileFolder> getListOfShortcutFolder () {
+    public List<ShortcutFolder> getListOfShortcutFolder () {
         String query = "select * from ShortcutFolder order by Pos";
-        List<ShortcutFileFolder> list = new ArrayList<>();
+        List<ShortcutFolder> list = new ArrayList<>();
 
         try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while(rs.next()) {
-                list.add(new ShortcutFileFolder(rs.getInt("ID"),rs.getInt("Pos"),rs.getString("Url"),rs.getString("Text")));
+                list.add(new ShortcutFolder(rs.getInt("ID"),rs.getInt("Pos"),rs.getString("Url"),rs.getString("Text")));
             }
         } catch (SQLException exp) {
             System.out.println(exp.getMessage());
@@ -112,9 +112,9 @@ public class Database {
         return null;
     }
 
-    public ShortcutFileFolder getLastShortcutFolderElement () {
+    public ShortcutFolder getLastShortcutFolderElement () {
         try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from ShortcutFolder where ID = (select max(ID) from ShortcutFolder)")){
-            return new ShortcutFileFolder(rs.getInt("ID"),rs.getInt("Pos"),rs.getString("Url"),rs.getString("Text"));
+            return new ShortcutFolder(rs.getInt("ID"),rs.getInt("Pos"),rs.getString("Url"),rs.getString("Text"));
         } catch (SQLException var59) {
             System.out.println(var59.getMessage());
         }
@@ -150,8 +150,8 @@ public class Database {
         }
     }
 
-    private void updatePosOfShortcutFolder(ShortcutFileFolder shortcutFileFolder, int pos) {
-        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("update ShortcutFolder set Pos = '" + pos + "' " + "where ID = '" + shortcutFileFolder.id + "'")){
+    private void updatePosOfShortcutFolder(ShortcutFolder shortcutFolder, int pos) {
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("update ShortcutFolder set Pos = '" + pos + "' " + "where ID = '" + shortcutFolder.id + "'")){
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -176,9 +176,9 @@ public class Database {
         }
     }
 
-    public void deleteShortcutFolder(ShortcutFileFolder shortcutFileFolder) {
+    public void deleteShortcutFolder(ShortcutFolder shortcutFolder) {
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("DELETE from ShortcutFolder where ID = ?")){
-            pstmt.setInt(1, shortcutFileFolder.id);
+            pstmt.setInt(1, shortcutFolder.id);
             pstmt.executeUpdate();
         } catch (SQLException var59) {
             System.out.println(var59.getMessage());
@@ -207,12 +207,12 @@ public class Database {
         }
     }
 
-    public void setPositionOfShortcutFolder(ShortcutFileFolder shortcutFileFolder, ObservableList<ShortcutFileFolder> list) {
-        if (shortcutFileFolder.pos != 0) {
-            updatePosOfShortcutFolder(shortcutFileFolder, 0);
+    public void setPositionOfShortcutFolder(ShortcutFolder shortcutFolder, ObservableList<ShortcutFolder> list) {
+        if (shortcutFolder.pos != 0) {
+            updatePosOfShortcutFolder(shortcutFolder, 0);
             int pos = 0;
-            for (ShortcutFileFolder element: list) {
-                if (!element.equals(shortcutFileFolder)) {
+            for (ShortcutFolder element: list) {
+                if (!element.equals(shortcutFolder)) {
                     element.pos = ++pos;
                     updatePosOfShortcutFolder(element, pos);
                 }
