@@ -16,12 +16,16 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Comparator;
 
 public class ShortcutElement {
 
     public String url,text;
     public int id, pos;
     public AnchorPane view;
+
+    private static boolean nodeIsInDrag = false;
+    private static ShortcutElement viewWantToMove;
 
 
     public ShortcutElement(int id, int pos, String text, String url) {
@@ -46,20 +50,14 @@ public class ShortcutElement {
                     view.setStyle("-fx-background-color: #23272a;");
                     SingletonShortcut.shortcutInternetController.buttonDelShortcut.setVisible(true);
                     SingletonShortcut.shortcutInternetController.buttonEditShortcut.setVisible(true);
+
+                    view.setOnDragDetected( e -> {
+                        nodeIsInDrag = true;
+                        viewWantToMove = this;
+                    });
                 }
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     try {
-                        SingletonShortcut.shortcutInternetController.database.setPositionOfShortcut(this, SingletonShortcut.shortcutInternetController.listShortcut);
-                        SingletonShortcut.shortcutInternetController.setToFirstPlace(this);
-                        SingletonShortcut.shortcutMostUsed.refreshView = true;
-                        SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
-                        SingletonShortcut.shortcutInternetController.shortcutElementSelected = null;
-                        SingletonShortcut.shortcutInternetController.buttonDelShortcut.setVisible(false);
-                        SingletonShortcut.shortcutInternetController.buttonEditShortcut.setVisible(false);
-
-                        Node source = (Node) event.getSource();
-                        Stage stage = (Stage) source.getScene().getWindow();
-                        stage.setHeight(0.05);
 
                         Platform.runLater(() -> {
                             try {
@@ -69,9 +67,35 @@ public class ShortcutElement {
                             }
                         });
 
+
+                        SingletonShortcut.shortcutInternetController.shortcutElementSelected = null;
+                        SingletonShortcut.shortcutInternetController.buttonDelShortcut.setVisible(false);
+                        SingletonShortcut.shortcutInternetController.buttonEditShortcut.setVisible(false);
+
+                        Node source = (Node) event.getSource();
+                        Stage stage = (Stage) source.getScene().getWindow();
+                        stage.setHeight(0.05);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                }
+            });
+
+            view.setOnMouseEntered( e -> {
+                if (nodeIsInDrag) {
+                    SingletonShortcut.shortcutInternetController.updateView(this.pos, viewWantToMove.pos);
+                    SingletonShortcut.shortcutInternetController.database.setPositionOfShortcut(viewWantToMove, this, SingletonShortcut.shortcutInternetController.listShortcut);
+
+                    SingletonShortcut.shortcutInternetController.listShortcut.sort(Comparator.comparingInt((ShortcutElement s) -> s.pos));
+
+                    Platform.runLater(() -> {
+                        SingletonShortcut.shortcutMostUsed.refreshView = true;
+                        SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
+                    });
+
+                    nodeIsInDrag = false;
+                    viewWantToMove = null;
                 }
             });
 

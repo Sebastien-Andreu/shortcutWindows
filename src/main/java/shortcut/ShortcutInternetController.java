@@ -42,7 +42,7 @@ public class ShortcutInternetController {
 
 
     public ShortcutElement shortcutElementSelected = null;
-    public boolean setInFirstPlace = false;
+    public boolean updateList = false;
     private boolean shortcutAddClicked = false;
 
     public Database database;
@@ -74,22 +74,11 @@ public class ShortcutInternetController {
     private void eventListenerShortcut(ListChangeListener.Change<? extends ShortcutElement> change) {
         while(change.next()) {
             if (change.wasAdded()) {
-                final Node[] toFirstPlace = new Node[1];
-                toFirstPlace[0] = null;
-                if (setInFirstPlace){
-                    showShortcut.getChildren().forEach(e -> {
-                        if (e.equals(shortcutElementSelected.view)){
-                            toFirstPlace[0] = e;
-                        }
-                    });
-                    toFirstPlace[0].toBack();
-                } else {
-                    this.showShortcut.getChildren().add(listShortcut.get(listShortcut.size()-1).getView());
-                }
+                this.showShortcut.getChildren().add(listShortcut.get(listShortcut.size()-1).getView());
             }
             if (change.wasRemoved()) {
                 if (!listShortcut.isEmpty()){
-                    if (!setInFirstPlace) {
+                    if (!updateList) {
                         this.showShortcut.getChildren().subList(change.getFrom(), change.getFrom() + change.getRemovedSize()).clear();
                     }
                 } else {
@@ -190,7 +179,7 @@ public class ShortcutInternetController {
     public void onUserClickToDelShortcut (ActionEvent event) {
         Platform.runLater(() -> {
             if (shortcutElementSelected != null) {
-                database.deleteShortcutElement(shortcutElementSelected);
+                database.deleteShortcutElement(shortcutElementSelected, listShortcut);
                 listShortcut.removeIf(shortcutElement -> shortcutElement.equals(shortcutElementSelected));
                 shortcutElementSelected = null;
             }
@@ -244,11 +233,19 @@ public class ShortcutInternetController {
         }
     }
 
-    public void setToFirstPlace (ShortcutElement shortcutElement) {
-        shortcutElementSelected = shortcutElement;
-        setInFirstPlace = true;
-        listShortcut.remove(shortcutElement);
-        listShortcut.add(0,shortcutElement);
-        setInFirstPlace = false;
+    public void updateView (int start, int stop) {
+        if (start < stop) {
+            for (int i = start; i < listShortcut.size(); ++i) {
+                if (i != stop) {
+                    listShortcut.get(i).view.toFront();
+                }
+            }
+        } else {
+            for (int i = start; i >= 0; --i) {
+                if (i != stop) {
+                    listShortcut.get(i).view.toBack();
+                }
+            }
+        }
     }
 }

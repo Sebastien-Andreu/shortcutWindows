@@ -3,6 +3,7 @@ package shortcut;
 import database.Database;
 import element.ShortcutElement;
 import element.ShortcutElementMostUsed;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -29,6 +30,7 @@ public class ShortcutMostUsed {
     public ObservableList<ShortcutElementMostUsed> listShortcutInternet = FXCollections.observableArrayList();
 
     public boolean refreshView = true;
+    public boolean update = true;
 
 
     @FXML
@@ -49,7 +51,9 @@ public class ShortcutMostUsed {
             }
             if (change.wasRemoved()) {
                 if (!listShortcutInternet.isEmpty()){
-                    this.showMostUsedShortcutInternet.getChildren().subList(change.getFrom(), change.getFrom() + change.getRemovedSize()).clear();
+                    if (!refreshView){
+                        this.showMostUsedShortcutInternet.getChildren().subList(change.getFrom(), change.getFrom() + change.getRemovedSize()).clear();
+                    }
                 } else {
                     this.showMostUsedShortcutInternet.getChildren().clear();
                 }
@@ -63,16 +67,18 @@ public class ShortcutMostUsed {
         }
 
         if (refreshView) {
-            listShortcutInternet.clear();
-            Database database = new Database();
-            List<ShortcutElement> list = database.getListOfShortcut();
+            Platform.runLater(() -> {
+                listShortcutInternet.clear();
+                Database database = new Database();
+                List<ShortcutElement> list = database.getListOfShortcut();
 
-            if (list.size() >= 4) {
-                for ( int i = 0; i < 4; ++i) {
-                    listShortcutInternet.add(new ShortcutElementMostUsed(list.get(i).text, list.get(i).url));
+                if (list.size() >= 4) {
+                    for ( int i = 0; i < 4; ++i) {
+                        listShortcutInternet.add(new ShortcutElementMostUsed(list.get(i).text, list.get(i).url));
+                    }
                 }
-            }
-            refreshView = false;
+                refreshView = false;
+            });
         }
     }
 

@@ -16,12 +16,16 @@ import singleton.SingletonShortcut;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Comparator;
 
 public class ShortcutApp {
 
     public String url,text;
     public int id, pos;
     public AnchorPane view;
+
+    private static boolean nodeIsInDrag = false;
+    private static ShortcutApp viewWantToMove;
 
 
     public ShortcutApp(int id, int pos, String url, String text) {
@@ -45,12 +49,14 @@ public class ShortcutApp {
                     SingletonShortcut.shortcutAppController.shortcutAppSelected = this;
                     view.setStyle("-fx-background-color: #23272a;");
                     SingletonShortcut.shortcutAppController.buttonDelApp.setVisible(true);
+
+                    view.setOnDragDetected( e -> {
+                        nodeIsInDrag = true;
+                        viewWantToMove = this;
+                    });
                 }
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     try {
-                        SingletonShortcut.shortcutAppController.database.setPositionOfShortcutApp(this, SingletonShortcut.shortcutAppController.listShortcutApp);
-                        SingletonShortcut.shortcutAppController.setToFirstPlace(this);
-
                         SingletonShortcut.shortcutAppController.shortcutAppSelected = null;
                         SingletonShortcut.shortcutAppController.buttonDelApp.setVisible(false);
 
@@ -72,6 +78,18 @@ public class ShortcutApp {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                }
+            });
+
+            view.setOnMouseEntered( e -> {
+                if (nodeIsInDrag) {
+                    SingletonShortcut.shortcutAppController.updateView(this.pos, viewWantToMove.pos);
+                    SingletonShortcut.shortcutAppController.database.setPositionOfShortcutApp(viewWantToMove, this, SingletonShortcut.shortcutAppController.listShortcutApp);
+
+                    SingletonShortcut.shortcutAppController.listShortcutApp.sort(Comparator.comparingInt((ShortcutApp s) -> s.pos));
+
+                    nodeIsInDrag = false;
+                    viewWantToMove = null;
                 }
             });
 

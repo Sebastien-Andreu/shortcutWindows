@@ -185,7 +185,7 @@ public class ShortcutFolderController {
     public void onUserClickToDelShortcut (ActionEvent event) {
         Platform.runLater(() -> {
             if (shortcutFolderSelected != null) {
-                database.deleteShortcutFolder(shortcutFolderSelected);
+                database.deleteShortcutFolder(shortcutFolderSelected, listShortcutFolder);
                 listShortcutFolder.removeIf(shortcutFolder -> shortcutFolder.equals(shortcutFolderSelected));
                 shortcutFolderSelected = null;
             }
@@ -199,12 +199,20 @@ public class ShortcutFolderController {
         resetColorOfItem();
     }
 
-    public void setToFirstPlace (ShortcutFolder shortcutFile) {
-        shortcutFolderSelected = shortcutFile;
-        setInFirstPlace = true;
-        listShortcutFolder.remove(shortcutFile);
-        listShortcutFolder.add(0,shortcutFile);
-        setInFirstPlace = false;
+    public void updateView (int start, int stop) {
+        if (start < stop) {
+            for (int i = start; i < listShortcutFolder.size(); ++i) {
+                if (i != stop) {
+                    listShortcutFolder.get(i).view.toFront();
+                }
+            }
+        } else {
+            for (int i = start; i >= 0; --i) {
+                if (i != stop) {
+                    listShortcutFolder.get(i).view.toBack();
+                }
+            }
+        }
     }
 
     public void onDragDropped(DragEvent e) {

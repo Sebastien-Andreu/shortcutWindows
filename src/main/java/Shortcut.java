@@ -128,6 +128,9 @@ public class Shortcut extends Application {
                 stage.setWidth(0.05);
                 setInitializedTransition();
                 transition.play();
+                SingletonShortcut.shortcutInternetController.resetColorOfItem();
+                SingletonShortcut.shortcutAppController.resetColorOfItem();
+                SingletonShortcut.shortcutFolderController.resetColorOfItem();
             }
         });
 

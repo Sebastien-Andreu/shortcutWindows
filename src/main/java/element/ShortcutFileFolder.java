@@ -6,7 +6,6 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -18,19 +17,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Comparator;
 
-public class ShortcutFolder {
+public class ShortcutFileFolder {
 
     public String url,text;
     public int id, pos;
     public AnchorPane view;
 
-    private static boolean nodeIsInDrag = false;
-    private static ShortcutFolder viewWantToMove;
-
-
-    public ShortcutFolder(int id, int pos, String url, String text) {
+    public ShortcutFileFolder(int id, int pos, String url, String text) {
         this.id = id;
         this.pos = pos;
         this.url = url;
@@ -52,15 +46,12 @@ public class ShortcutFolder {
                     SingletonShortcut.shortcutFolderController.shortcutFolderSelected = this;
                     view.setStyle("-fx-background-color: #23272a;");
                     SingletonShortcut.shortcutFolderController.buttonDelFolder.setVisible(true);
-
-                    view.setOnDragDetected( e -> {
-                        nodeIsInDrag = true;
-                        viewWantToMove = this;
-                    });
                 }
 
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     try {
+                        SingletonShortcut.shortcutFolderController.database.setPositionOfShortcutFolder(this, SingletonShortcut.shortcutFolderController.listShortcutFolder);
+                        SingletonShortcut.shortcutFolderController.setToFirstPlace(this);
                         SingletonShortcut.shortcutFolderController.shortcutFolderSelected = null;
                         SingletonShortcut.shortcutFolderController.buttonDelFolder.setVisible(false);
 
@@ -82,18 +73,6 @@ public class ShortcutFolder {
                 }
             });
 
-            view.setOnMouseEntered( e -> {
-                if (nodeIsInDrag) {
-                    SingletonShortcut.shortcutFolderController.updateView(this.pos, viewWantToMove.pos);
-                    SingletonShortcut.shortcutFolderController.database.setPositionOfShortcutFolder(viewWantToMove, this, SingletonShortcut.shortcutFolderController.listShortcutFolder);
-
-                    SingletonShortcut.shortcutFolderController.listShortcutFolder.sort(Comparator.comparingInt((ShortcutFolder s) -> s.pos));
-
-                    nodeIsInDrag = false;
-                    viewWantToMove = null;
-                }
-            });
-
             setValue();
 
             return view;
@@ -106,15 +85,13 @@ public class ShortcutFolder {
     public void setValue () {
         BufferedImage image = JIconExtract.getIconForFile(128,128,url);
         Platform.runLater(() -> {
-            if (image != null) {
-                Image img = SwingFXUtils.toFXImage(image, null);
+            Image img = SwingFXUtils.toFXImage(image, null);
 
-                Label label = (Label) view.lookup("#label");
-                label.setText(text);
+            Label label = (Label) view.lookup("#label");
+            label.setText(text);
 
-                ImageView imgView = (ImageView) view.lookup("#picture");
-                imgView.setImage(img);
-            }
+            ImageView imgView = (ImageView) view.lookup("#picture");
+            imgView.setImage(img);
         });
     }
 }

@@ -4,6 +4,7 @@ import element.ShortcutApp;
 import element.ShortcutElement;
 import element.ShortcutFolder;
 import javafx.collections.ObservableList;
+import shortcut.ShortcutController;
 
 import java.io.File;
 import java.sql.*;
@@ -158,7 +159,7 @@ public class Database {
         }
     }
 
-    private void updatePosOfShortcutFolder(ShortcutApp shortcutApp, int pos) {
+    private void updatePosOfShortcutApp(ShortcutApp shortcutApp, int pos) {
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("update ShortcutApp set Pos = '" + pos + "' " + "where ID = '" + shortcutApp.id + "'")){
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -167,7 +168,8 @@ public class Database {
     }
 
 
-    public void deleteShortcutElement (ShortcutElement shortcutElement) {
+    public void deleteShortcutElement (ShortcutElement shortcutElement, List<ShortcutElement> list) {
+        setPositionOfShortcutAfterDelete(shortcutElement, list);
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("DELETE from Shortcut where ID = ?")){
             pstmt.setInt(1, shortcutElement.id);
             pstmt.executeUpdate();
@@ -176,7 +178,8 @@ public class Database {
         }
     }
 
-    public void deleteShortcutFolder(ShortcutFolder shortcutFolder) {
+    public void deleteShortcutFolder(ShortcutFolder shortcutFolder, List<ShortcutFolder> list) {
+        setPositionOfShortcutFolderAfterDelete(shortcutFolder, list);
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("DELETE from ShortcutFolder where ID = ?")){
             pstmt.setInt(1, shortcutFolder.id);
             pstmt.executeUpdate();
@@ -185,7 +188,8 @@ public class Database {
         }
     }
 
-    public void deleteShortcutApp(ShortcutApp shortcutApp) {
+    public void deleteShortcutApp(ShortcutApp shortcutApp, List<ShortcutApp> list) {
+        setPositionOfShortcutAppAfterDelete(shortcutApp, list);
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("DELETE from ShortcutApp where ID = ?")){
             pstmt.setInt(1, shortcutApp.id);
             pstmt.executeUpdate();
@@ -194,42 +198,97 @@ public class Database {
         }
     }
 
-    public void setPositionOfShortcut (ShortcutElement shortcutElement, List<ShortcutElement> list) {
-        if (shortcutElement.pos != 0) {
-            updatePosOfShortcut(shortcutElement, 0);
-            int pos = 0;
-            for (ShortcutElement element: list) {
-                if (!element.equals(shortcutElement)) {
-                    element.pos = ++pos;
-                    updatePosOfShortcut(element, pos);
-                }
+    public void setPositionOfShortcut (ShortcutElement shortcutElementChoose, ShortcutElement shortcutElementTarget, List<ShortcutElement> list) {
+        int posTemp = shortcutElementTarget.pos;
+        if (shortcutElementChoose.pos > shortcutElementTarget.pos){
+            for (int pos = shortcutElementTarget.pos; pos < shortcutElementChoose.pos; ++pos){
+                list.get(pos).pos = pos + 1;
+                updatePosOfShortcut(list.get(pos), pos + 1);
             }
+        } else {
+            for (int pos = shortcutElementTarget.pos; pos > shortcutElementChoose.pos; --pos){
+                list.get(pos).pos = pos -1;
+                updatePosOfShortcut(list.get(pos), pos - 1);
+            }
+        }
+        list.get(shortcutElementChoose.pos).pos = posTemp;
+        updatePosOfShortcut(shortcutElementChoose, posTemp);
+    }
+
+    public void setPositionOfShortcutFolder(ShortcutFolder shortcutElementChoose, ShortcutFolder shortcutElementTarget, ObservableList<ShortcutFolder> list) {
+        int posTemp = shortcutElementTarget.pos;
+        if (shortcutElementChoose.pos > shortcutElementTarget.pos){
+            for (int pos = shortcutElementTarget.pos; pos < shortcutElementChoose.pos; ++pos){
+                list.get(pos).pos = pos + 1;
+                updatePosOfShortcutFolder(list.get(pos), pos + 1);
+            }
+        } else {
+            for (int pos = shortcutElementTarget.pos; pos > shortcutElementChoose.pos; --pos){
+                list.get(pos).pos = pos -1;
+                updatePosOfShortcutFolder(list.get(pos), pos - 1);
+            }
+        }
+        list.get(shortcutElementChoose.pos).pos = posTemp;
+        updatePosOfShortcutFolder(shortcutElementChoose, posTemp);
+
+//        if (shortcutFolder.pos != 0) {
+//            updatePosOfShortcutFolder(shortcutFolder, 0);
+//            int pos = 0;
+//            for (ShortcutFolder element: list) {
+//                if (!element.equals(shortcutFolder)) {
+//                    element.pos = ++pos;
+//                    updatePosOfShortcutFolder(element, pos);
+//                }
+//            }
+//        }
+    }
+
+    public void setPositionOfShortcutApp(ShortcutApp shortcutElementChoose, ShortcutApp shortcutElementTarget, ObservableList<ShortcutApp> list) {
+        int posTemp = shortcutElementTarget.pos;
+        if (shortcutElementChoose.pos > shortcutElementTarget.pos){
+            for (int pos = shortcutElementTarget.pos; pos < shortcutElementChoose.pos; ++pos){
+                list.get(pos).pos = pos + 1;
+                updatePosOfShortcutApp(list.get(pos), pos + 1);
+            }
+        } else {
+            for (int pos = shortcutElementTarget.pos; pos > shortcutElementChoose.pos; --pos){
+                list.get(pos).pos = pos -1;
+                updatePosOfShortcutApp(list.get(pos), pos - 1);
+            }
+        }
+        list.get(shortcutElementChoose.pos).pos = posTemp;
+        updatePosOfShortcutApp(shortcutElementChoose, posTemp);
+
+//        if (shortcutApp.pos != 0) {
+//            updatePosOfShortcutApp(shortcutApp, 0);
+//            int pos = 0;
+//            for (ShortcutApp element: list) {
+//                if (!element.equals(shortcutApp)) {
+//                    element.pos = ++pos;
+//                    updatePosOfShortcutFolder(element, pos);
+//                }
+//            }
+//        }
+    }
+
+    public void setPositionOfShortcutAfterDelete (ShortcutElement shortcutElement, List<ShortcutElement> list) {
+        for (int pos = shortcutElement.pos + 1; pos < list.size(); ++pos){
+            list.get(pos).pos = list.get(pos).pos - 1;
+            updatePosOfShortcut(list.get(pos), list.get(pos).pos);
         }
     }
 
-    public void setPositionOfShortcutFolder(ShortcutFolder shortcutFolder, ObservableList<ShortcutFolder> list) {
-        if (shortcutFolder.pos != 0) {
-            updatePosOfShortcutFolder(shortcutFolder, 0);
-            int pos = 0;
-            for (ShortcutFolder element: list) {
-                if (!element.equals(shortcutFolder)) {
-                    element.pos = ++pos;
-                    updatePosOfShortcutFolder(element, pos);
-                }
-            }
+    public void setPositionOfShortcutFolderAfterDelete (ShortcutFolder shortcutFolder, List<ShortcutFolder> list) {
+        for (int pos = shortcutFolder.pos + 1; pos < list.size(); ++pos){
+            list.get(pos).pos = list.get(pos).pos - 1;
+            updatePosOfShortcutFolder(list.get(pos), list.get(pos).pos);
         }
     }
 
-    public void setPositionOfShortcutApp(ShortcutApp shortcutApp, ObservableList<ShortcutApp> list) {
-        if (shortcutApp.pos != 0) {
-            updatePosOfShortcutFolder(shortcutApp, 0);
-            int pos = 0;
-            for (ShortcutApp element: list) {
-                if (!element.equals(shortcutApp)) {
-                    element.pos = ++pos;
-                    updatePosOfShortcutFolder(element, pos);
-                }
-            }
+    public void setPositionOfShortcutAppAfterDelete (ShortcutApp shortcutApp, List<ShortcutApp> list) {
+        for (int pos = shortcutApp.pos + 1; pos < list.size(); ++pos){
+            list.get(pos).pos = list.get(pos).pos - 1;
+            updatePosOfShortcutApp(list.get(pos), list.get(pos).pos);
         }
     }
 

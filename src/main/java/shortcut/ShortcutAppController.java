@@ -187,7 +187,7 @@ public class ShortcutAppController {
         Platform.runLater(() -> {
             if (shortcutAppSelected != null) {
                 try {
-                    database.deleteShortcutApp(shortcutAppSelected);
+                    database.deleteShortcutApp(shortcutAppSelected, listShortcutApp);
                     listShortcutApp.removeIf(shortcutApp -> shortcutApp.equals(shortcutAppSelected));
                     String extension = shortcutAppSelected.url.substring(shortcutAppSelected.url.lastIndexOf(".") + 1);
                     Files.delete(Paths.get("shortcut\\application\\" + shortcutAppSelected.text + "." + extension));
@@ -206,12 +206,20 @@ public class ShortcutAppController {
         resetColorOfItem();
     }
 
-    public void setToFirstPlace (ShortcutApp shortcutApp) {
-        shortcutAppSelected = shortcutApp;
-        setInFirstPlace = true;
-        listShortcutApp.remove(shortcutApp);
-        listShortcutApp.add(0,shortcutApp);
-        setInFirstPlace = false;
+    public void updateView (int start, int stop) {
+        if (start < stop) {
+            for (int i = start; i < listShortcutApp.size(); ++i) {
+                if (i != stop) {
+                    listShortcutApp.get(i).view.toFront();
+                }
+            }
+        } else {
+            for (int i = start; i >= 0; --i) {
+                if (i != stop) {
+                    listShortcutApp.get(i).view.toBack();
+                }
+            }
+        }
     }
 
     public void onDragDropped(DragEvent e) throws FileNotFoundException {
