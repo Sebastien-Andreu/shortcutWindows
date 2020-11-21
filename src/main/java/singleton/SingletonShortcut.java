@@ -9,6 +9,8 @@ public class SingletonShortcut {
     public static ShortcutMostUsed shortcutMostUsed;
     public static ShortcutController shortcutController;
 
+    public static String saveFolder;
+
     public static boolean freezeApp = false;
 
     private SingletonShortcut () {}

@@ -30,8 +30,6 @@ public class ShortcutMostUsed {
     public ObservableList<ShortcutElementMostUsed> listShortcutInternet = FXCollections.observableArrayList();
 
     public boolean refreshView = true;
-    public boolean update = true;
-
 
     @FXML
     public void initialize () {
@@ -50,36 +48,37 @@ public class ShortcutMostUsed {
                 this.showMostUsedShortcutInternet.getChildren().add(listShortcutInternet.get(listShortcutInternet.size() - 1).getView());
             }
             if (change.wasRemoved()) {
-                if (!listShortcutInternet.isEmpty()){
-                    if (!refreshView){
-                        this.showMostUsedShortcutInternet.getChildren().subList(change.getFrom(), change.getFrom() + change.getRemovedSize()).clear();
-                    }
-                } else {
-                    this.showMostUsedShortcutInternet.getChildren().clear();
-                }
+//                if (!listShortcutInternet.isEmpty()){
+//                    if (!refreshView){
+//                        this.showMostUsedShortcutInternet.getChildren().subList(change.getFrom(), change.getFrom() + change.getRemovedSize()).clear();
+//                    }
+//                } else {
+//                    this.showMostUsedShortcutInternet.getChildren().clear();
+//                }
             }
         }
     }
 
     public void showListOfShortcutInternetMostUsed () {
-        if (listShortcutInternet.size() < 4) {
-            refreshView = true;
-        }
+        Platform.runLater(() -> {
+            if (listShortcutInternet.size() < 4) {
+                refreshView = true;
+            }
 
-        if (refreshView) {
-            Platform.runLater(() -> {
-                listShortcutInternet.clear();
+            if (refreshView) {
                 Database database = new Database();
-                List<ShortcutElement> list = database.getListOfShortcut();
+                List<ShortcutElementMostUsed> list = database.getListOfShortcutMostUsed();
+                this.showMostUsedShortcutInternet.getChildren().clear();
+                listShortcutInternet.clear();
 
                 if (list.size() >= 4) {
                     for ( int i = 0; i < 4; ++i) {
-                        listShortcutInternet.add(new ShortcutElementMostUsed(list.get(i).text, list.get(i).url));
+                        listShortcutInternet.add(list.get(i));
                     }
                 }
                 refreshView = false;
-            });
-        }
+            }
+        });
     }
 
     public void resetColorOfItem () {

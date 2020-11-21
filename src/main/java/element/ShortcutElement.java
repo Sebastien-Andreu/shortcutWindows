@@ -89,10 +89,8 @@ public class ShortcutElement {
 
                     SingletonShortcut.shortcutInternetController.listShortcut.sort(Comparator.comparingInt((ShortcutElement s) -> s.pos));
 
-                    Platform.runLater(() -> {
-                        SingletonShortcut.shortcutMostUsed.refreshView = true;
-                        SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
-                    });
+                    SingletonShortcut.shortcutMostUsed.refreshView = true;
+                    SingletonShortcut.shortcutMostUsed.listShortcutInternet.clear();
 
                     nodeIsInDrag = false;
                     viewWantToMove = null;
@@ -113,7 +111,7 @@ public class ShortcutElement {
         label.setText(text);
 
         Image image;
-        if (text.equals("Github")) {
+        if (text.toUpperCase().equals("GITHUB")) {
             image = new Image("https://github.com/fluidicon.png");
         } else {
             image = new Image("https://www.google.com/s2/favicons?sz=64&domain_url=" + url);

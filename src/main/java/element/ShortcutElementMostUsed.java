@@ -14,24 +14,23 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-public class ShortcutElementMostUsed extends ShortcutElement{
+public class ShortcutElementMostUsed{
 
     public String url,text;
     public AnchorPane view;
 
 
     public ShortcutElementMostUsed(String text, String url) {
-        super(0,0,text, url);
         this.text = text;
         this.url = url;
     }
 
-    @Override
+
     public void resetColor () {
         view.setStyle("-fx-background-color: #2c2f33;");
     }
 
-    @Override
+
     public AnchorPane getView() {
         try {
             view = (AnchorPane) new FXMLLoader(getClass().getResource("/shortcutElement.fxml")).load();
@@ -40,18 +39,13 @@ public class ShortcutElementMostUsed extends ShortcutElement{
                 SingletonShortcut.shortcutMostUsed.resetColorOfItem();
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     try {
-                        for (ShortcutElement element : SingletonShortcut.shortcutInternetController.listShortcut) {
-                            if (element.url.equals(url) && element.text.equals(text)) {
-                                Platform.runLater(() -> {
-                                    try {
-                                        Desktop.getDesktop().browse(new URL(this.url).toURI());
-                                    } catch (IOException | URISyntaxException e) {
-                                        e.printStackTrace();
-                                    }
-                                });
-                                break;
+                        Platform.runLater(() -> {
+                            try {
+                                Desktop.getDesktop().browse(new URL(this.url).toURI());
+                            } catch (IOException | URISyntaxException e) {
+                                e.printStackTrace();
                             }
-                        }
+                        });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -67,7 +61,6 @@ public class ShortcutElementMostUsed extends ShortcutElement{
         }
     }
 
-    @Override
     public void setValue (String text) {
         Label label = (Label) view.lookup("#label");
         label.setText(text);

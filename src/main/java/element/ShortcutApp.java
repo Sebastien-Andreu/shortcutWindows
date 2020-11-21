@@ -66,7 +66,7 @@ public class ShortcutApp {
 
                         Platform.runLater(() -> {
                             try {
-                                url = url.replace("\\", "\\\\");
+                                url =  url.replace("\\", "\\\\");
                                 String extension = url.substring(url.lastIndexOf(".") + 1);
                                 ProcessBuilder pb = new ProcessBuilder("cmd", "/c", url);
                                 pb.start();

@@ -2,9 +2,11 @@ package database;
 
 import element.ShortcutApp;
 import element.ShortcutElement;
+import element.ShortcutElementMostUsed;
 import element.ShortcutFolder;
 import javafx.collections.ObservableList;
 import shortcut.ShortcutController;
+import singleton.SingletonShortcut;
 
 import java.io.File;
 import java.sql.*;
@@ -43,6 +45,20 @@ public class Database {
         return list;
     }
 
+    public List<ShortcutElementMostUsed> getListOfShortcutMostUsed () {
+        String query = "select * from Shortcut order by Pos";
+        List<ShortcutElementMostUsed> list = new ArrayList<>();
+
+        try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while(rs.next()) {
+                list.add(new ShortcutElementMostUsed(rs.getString("Text"),rs.getString("Url")));
+            }
+        } catch (SQLException exp) {
+            System.out.println(exp.getMessage());
+        }
+        return list;
+    }
+
     public List<ShortcutFolder> getListOfShortcutFolder () {
         String query = "select * from ShortcutFolder order by Pos";
         List<ShortcutFolder> list = new ArrayList<>();
@@ -63,7 +79,8 @@ public class Database {
 
         try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while(rs.next()) {
-                list.add(new ShortcutApp(rs.getInt("ID"),rs.getInt("Pos"),rs.getString("Url"),rs.getString("Text")));
+                System.out.println(SingletonShortcut.saveFolder + "\\shortcut\\application\\" + rs.getString("Url"));
+                list.add(new ShortcutApp(rs.getInt("ID"),rs.getInt("Pos"),SingletonShortcut.saveFolder + "\\shortcut\\application\\" + rs.getString("Url"),rs.getString("Text")));
             }
         } catch (SQLException exp) {
             System.out.println(exp.getMessage());
@@ -230,17 +247,6 @@ public class Database {
         }
         list.get(shortcutElementChoose.pos).pos = posTemp;
         updatePosOfShortcutFolder(shortcutElementChoose, posTemp);
-
-//        if (shortcutFolder.pos != 0) {
-//            updatePosOfShortcutFolder(shortcutFolder, 0);
-//            int pos = 0;
-//            for (ShortcutFolder element: list) {
-//                if (!element.equals(shortcutFolder)) {
-//                    element.pos = ++pos;
-//                    updatePosOfShortcutFolder(element, pos);
-//                }
-//            }
-//        }
     }
 
     public void setPositionOfShortcutApp(ShortcutApp shortcutElementChoose, ShortcutApp shortcutElementTarget, ObservableList<ShortcutApp> list) {
@@ -258,17 +264,6 @@ public class Database {
         }
         list.get(shortcutElementChoose.pos).pos = posTemp;
         updatePosOfShortcutApp(shortcutElementChoose, posTemp);
-
-//        if (shortcutApp.pos != 0) {
-//            updatePosOfShortcutApp(shortcutApp, 0);
-//            int pos = 0;
-//            for (ShortcutApp element: list) {
-//                if (!element.equals(shortcutApp)) {
-//                    element.pos = ++pos;
-//                    updatePosOfShortcutFolder(element, pos);
-//                }
-//            }
-//        }
     }
 
     public void setPositionOfShortcutAfterDelete (ShortcutElement shortcutElement, List<ShortcutElement> list) {
@@ -291,7 +286,6 @@ public class Database {
             updatePosOfShortcutApp(list.get(pos), list.get(pos).pos);
         }
     }
-
 
     private static void createDatabase (String url) {
         String shortcut = "CREATE TABLE IF NOT EXISTS \"Shortcut\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Text\" REAL NOT NULL,\"Url\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";

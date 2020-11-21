@@ -143,9 +143,9 @@ public class ShortcutAppController {
                 String name = filesAdd.get(0).getName().substring(0, lastPeriodPos);
 
                 if (listShortcutApp.isEmpty()) {
-                    database.addNewShortcutApp(target.getAbsolutePath(), name, 1);
+                    database.addNewShortcutApp(filesAdd.get(0).getName(), name, 1);
                 } else {
-                    database.addNewShortcutApp(target.getAbsolutePath(), name, listShortcutApp.get(listShortcutApp.size() - 1).pos + 1);
+                    database.addNewShortcutApp(filesAdd.get(0).getName(), name, listShortcutApp.get(listShortcutApp.size() - 1).pos + 1);
                 }
 
                 listShortcutApp.add(database.getLastShortcutApp());

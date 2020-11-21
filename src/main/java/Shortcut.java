@@ -31,6 +31,8 @@ public class Shortcut extends Application {
     @Override
     public void start (Stage primaryStage) {
         try {
+            setSaveFolder();
+
             setStage(primaryStage);
 
             File folder = new File("shortcut");
@@ -62,6 +64,10 @@ public class Shortcut extends Application {
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
+    }
+
+    private void setSaveFolder () {
+        SingletonShortcut.saveFolder = System.getProperty("user.dir");
     }
 
     private void setStage (Stage primaryStage) throws IOException {
