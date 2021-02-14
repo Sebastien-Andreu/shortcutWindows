@@ -21,6 +21,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import java.awt.image.BufferedImage;
@@ -53,6 +55,9 @@ public class ShortcutAppController {
     @FXML
     public Label label;
 
+    @FXML
+    public HBox hboxAppTitle, foot;
+
     public ShortcutApp shortcutAppSelected;
     private boolean shortcutAddClicked = false;
     public boolean setInFirstPlace = false;
@@ -68,7 +73,7 @@ public class ShortcutAppController {
     public void initialize () {
         try {
             SingletonShortcut.shortcutAppController = this;
-
+            setColor();
             this.listShortcutApp.addListener(this::eventListenerShortcut);
 
             database = new Database();
@@ -251,5 +256,18 @@ public class ShortcutAppController {
             }
         }
         event.consume();
+    }
+
+    public void setColor() {
+        resetColorOfItem();
+        hboxAppTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;");
+        buttonAddApp.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+        buttonDelApp.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+
+        scrollPaneViewApp.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-border-width: 0 0 3 0;");
+        showApp.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
+
+        buttonValidAddApp.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
+        foot.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;");
     }
 }

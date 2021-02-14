@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import java.awt.image.BufferedImage;
@@ -36,18 +37,19 @@ public class ShortcutApp {
     }
 
     public void resetColor () {
-        view.setStyle("-fx-background-color: #2c2f33;");
+        view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + ";");
     }
 
     public AnchorPane getView() {
         try {
             view = (AnchorPane) new FXMLLoader(getClass().getResource("/shortcutElement.fxml")).load();
+            resetColor();
 
             view.setOnMouseClicked(event -> {
                 SingletonShortcut.shortcutAppController.resetColorOfItem();
                 if (event.getButton().equals(MouseButton.SECONDARY)){
                     SingletonShortcut.shortcutAppController.shortcutAppSelected = this;
-                    view.setStyle("-fx-background-color: #23272a;");
+                    view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + ";");
                     SingletonShortcut.shortcutAppController.buttonDelApp.setVisible(true);
 
                     view.setOnDragDetected( e -> {
@@ -67,7 +69,6 @@ public class ShortcutApp {
                         Platform.runLater(() -> {
                             try {
                                 url =  url.replace("\\", "\\\\");
-                                String extension = url.substring(url.lastIndexOf(".") + 1);
                                 ProcessBuilder pb = new ProcessBuilder("cmd", "/c", url);
                                 pb.start();
                             } catch (IOException e) {

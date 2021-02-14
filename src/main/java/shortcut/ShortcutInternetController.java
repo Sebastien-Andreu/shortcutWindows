@@ -7,7 +7,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -17,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import database.Database;
+import javafx.scene.layout.HBox;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import java.net.URL;
@@ -38,6 +39,9 @@ public class ShortcutInternetController {
     TextField inputAddText, inputAddUrl;
 
     @FXML
+    public HBox hboxTitle;
+
+    @FXML
     public Button buttonAddShortcut, buttonDelShortcut, buttonEditShortcut, buttonValidAddShortcut, buttonValidEditShortcut;
 
 
@@ -54,7 +58,7 @@ public class ShortcutInternetController {
     public void initialize () {
         try {
             SingletonShortcut.shortcutInternetController = this;
-
+            setColor();
             this.listShortcut.addListener(this::eventListenerShortcut);
 
             database = new Database();
@@ -247,5 +251,21 @@ public class ShortcutInternetController {
                 }
             }
         }
+    }
+
+    public void setColor () {
+        resetColorOfItem();
+        hboxTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;");
+        buttonAddShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+        buttonDelShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+        buttonEditShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+
+        scrollPaneViewShortcut.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-border-width: 0 0 3 0;");
+        showShortcut.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
+
+        inputAddText.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-text-inner-color: #ffffff;");
+        inputAddUrl.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getBackgroundTitle() +"; -fx-text-inner-color: #ffffff;");
+        buttonValidAddShortcut.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
+        buttonValidEditShortcut.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
     }
 }

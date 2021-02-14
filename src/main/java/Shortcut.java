@@ -1,3 +1,4 @@
+import database.Database;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -18,6 +19,7 @@ import java.io.IOException;
 public class Shortcut extends Application {
 
     public AnchorPane anchorShortcut;
+    Database database = new Database();
 
     private double screenHeight = Screen.getPrimary().getBounds().getHeight();
     public TranslateTransition transition;
@@ -32,7 +34,8 @@ public class Shortcut extends Application {
     public void start (Stage primaryStage) {
         try {
             setSaveFolder();
-
+            database.addFirstColor();
+            database.getColor();
             setStage(primaryStage);
 
             File folder = new File("shortcut");
@@ -89,6 +92,7 @@ public class Shortcut extends Application {
         this.stage.setHeight(0.05);
         this.stage.setWidth(0.05);
 
+
         anchorShortcut.translateYProperty().addListener((observable, oldValue, newValue) -> {
             stage.setHeight(stage.getHeight() + newValue.longValue());
             anchorShortcut.setLayoutY(0);
@@ -111,11 +115,9 @@ public class Shortcut extends Application {
                 transition.stop();
                 if (SingletonShortcut.shortcutInternetController.listShortcut.size() < 4) {
                     setTransitionWhenEmpty();
-                    SingletonShortcut.shortcutController.setViewAccessible();
                 } else {
                     setFirstTransition();
                     Platform.runLater(() -> {
-                        SingletonShortcut.shortcutController.setViewInaccessible();
                         SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
                     });
                 }
@@ -137,13 +139,31 @@ public class Shortcut extends Application {
                 SingletonShortcut.shortcutInternetController.resetColorOfItem();
                 SingletonShortcut.shortcutAppController.resetColorOfItem();
                 SingletonShortcut.shortcutFolderController.resetColorOfItem();
+                SingletonShortcut.shortcutMostUsed.onUserWantToQuitParameter();
             }
         });
 
-        SingletonShortcut.shortcutMostUsed.swipeDown.addEventHandler(MouseEvent.MOUSE_CLICKED, evt -> {
+        SingletonShortcut.shortcutMostUsed.swipeDown.setOnMouseClicked( e -> {
             transition.stop();
             setSecondTransition();
             SingletonShortcut.shortcutController.setViewAccessible();
+            transition.play();
+        });
+
+        SingletonShortcut.shortcutMostUsed.param.setOnMouseClicked( e -> {
+            SingletonShortcut.freezeApp = true;
+            SingletonShortcut.shortcutMostUsed.onUserWantToShowParameter();
+            transition.stop();
+            setTransitionParameterOpen();
+            transition.play();
+        });
+
+        SingletonShortcut.shortcutMostUsed.quitParameter.setOnMouseClicked( e -> {
+            SingletonShortcut.freezeApp = false;
+            SingletonShortcut.shortcutMostUsed.onUserWantToQuitParameter();
+            transition.stop();
+            stage.setHeight(130);
+            setTransitionParameterQuit();
             transition.play();
         });
     }
@@ -179,6 +199,24 @@ public class Shortcut extends Application {
         transition = new TranslateTransition();
         transition.setFromY(0.05);
         transition.setToY(screenHeight);
+
+        transition.setDuration(Duration.seconds(0.0001));
+        transition.setNode(anchorShortcut);
+    }
+
+    public void setTransitionParameterOpen () {
+        transition = new TranslateTransition();
+        transition.setFromY(130);
+        transition.setToY(220);
+
+        transition.setDuration(Duration.seconds(0.0001));
+        transition.setNode(anchorShortcut);
+    }
+
+    public void setTransitionParameterQuit () {
+        transition = new TranslateTransition();
+        transition.setFromY(220);
+        transition.setToY(1);
 
         transition.setDuration(Duration.seconds(0.0001));
         transition.setNode(anchorShortcut);

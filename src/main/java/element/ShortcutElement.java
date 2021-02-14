@@ -3,13 +3,13 @@ package element;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import java.awt.*;
@@ -36,18 +36,19 @@ public class ShortcutElement {
     }
 
     public void resetColor () {
-        view.setStyle("-fx-background-color: #2c2f33;");
+        view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + ";");
     }
 
     public AnchorPane getView() {
         try {
             view = (AnchorPane) new FXMLLoader(getClass().getResource("/shortcutElement.fxml")).load();
+            resetColor();
 
             view.setOnMouseClicked(event -> {
                 SingletonShortcut.shortcutInternetController.resetColorOfItem();
                 if (event.getButton().equals(MouseButton.SECONDARY)){
                     SingletonShortcut.shortcutInternetController.shortcutElementSelected = this;
-                    view.setStyle("-fx-background-color: #23272a;");
+                    view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + ";");
                     SingletonShortcut.shortcutInternetController.buttonDelShortcut.setVisible(true);
                     SingletonShortcut.shortcutInternetController.buttonEditShortcut.setVisible(true);
 

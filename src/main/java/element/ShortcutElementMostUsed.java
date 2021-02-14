@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import java.awt.*;
@@ -27,13 +28,14 @@ public class ShortcutElementMostUsed{
 
 
     public void resetColor () {
-        view.setStyle("-fx-background-color: #2c2f33;");
+        view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + ";");
     }
 
 
     public AnchorPane getView() {
         try {
             view = (AnchorPane) new FXMLLoader(getClass().getResource("/shortcutElement.fxml")).load();
+            resetColor();
 
             view.setOnMouseClicked(event -> {
                 SingletonShortcut.shortcutMostUsed.resetColorOfItem();

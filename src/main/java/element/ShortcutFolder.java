@@ -6,12 +6,12 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import java.awt.*;
@@ -38,19 +38,20 @@ public class ShortcutFolder {
     }
 
     public void resetColor () {
-        view.setStyle("-fx-background-color: #2c2f33;");
+        view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + ";");
     }
 
     public AnchorPane getView() {
         try {
             view = new FXMLLoader(getClass().getResource("/shortcutElement.fxml")).load();
+            resetColor();
 
             view.setOnMouseClicked(event -> {
                 SingletonShortcut.shortcutFolderController.resetColorOfItem();
 
                 if (event.getButton().equals(MouseButton.SECONDARY)){
                     SingletonShortcut.shortcutFolderController.shortcutFolderSelected = this;
-                    view.setStyle("-fx-background-color: #23272a;");
+                    view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + ";");
                     SingletonShortcut.shortcutFolderController.buttonDelFolder.setVisible(true);
 
                     view.setOnDragDetected( e -> {

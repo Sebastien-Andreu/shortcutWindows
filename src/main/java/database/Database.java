@@ -5,7 +5,8 @@ import element.ShortcutElement;
 import element.ShortcutElementMostUsed;
 import element.ShortcutFolder;
 import javafx.collections.ObservableList;
-import shortcut.ShortcutController;
+import javafx.scene.paint.Color;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import java.io.File;
@@ -15,13 +16,11 @@ import java.util.List;
 
 public class Database {
 
+
     public static Connection connect() {
         String url = "jdbc:sqlite:BD.db";
         Connection conn = null;
-        File directory = new File("BD.db");
-        if (!directory.exists()) {
-            createDatabase(url);
-        }
+        createDatabase(url);
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException exp) {
@@ -141,7 +140,7 @@ public class Database {
 
     public ShortcutApp getLastShortcutApp () {
         try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from ShortcutApp where ID = (select max(ID) from ShortcutApp)")){
-            return new ShortcutApp(rs.getInt("ID"),rs.getInt("Pos"),rs.getString("Url"),rs.getString("Text"));
+            return new ShortcutApp(rs.getInt("ID"),rs.getInt("Pos"), SingletonShortcut.saveFolder + "\\shortcut\\application\\" + rs.getString("Url"),rs.getString("Text"));
         } catch (SQLException var59) {
             System.out.println(var59.getMessage());
         }
@@ -266,36 +265,89 @@ public class Database {
         updatePosOfShortcutApp(shortcutElementChoose, posTemp);
     }
 
-    public void setPositionOfShortcutAfterDelete (ShortcutElement shortcutElement, List<ShortcutElement> list) {
+    public void setPositionOfShortcutAfterDelete ( ShortcutElement shortcutElement, List<ShortcutElement> list ) {
         for (int pos = shortcutElement.pos + 1; pos < list.size(); ++pos){
             list.get(pos).pos = list.get(pos).pos - 1;
             updatePosOfShortcut(list.get(pos), list.get(pos).pos);
         }
     }
 
-    public void setPositionOfShortcutFolderAfterDelete (ShortcutFolder shortcutFolder, List<ShortcutFolder> list) {
+    public void setPositionOfShortcutFolderAfterDelete ( ShortcutFolder shortcutFolder, List<ShortcutFolder> list ) {
         for (int pos = shortcutFolder.pos + 1; pos < list.size(); ++pos){
             list.get(pos).pos = list.get(pos).pos - 1;
             updatePosOfShortcutFolder(list.get(pos), list.get(pos).pos);
         }
     }
 
-    public void setPositionOfShortcutAppAfterDelete (ShortcutApp shortcutApp, List<ShortcutApp> list) {
+    public void setPositionOfShortcutAppAfterDelete ( ShortcutApp shortcutApp, List<ShortcutApp> list ) {
         for (int pos = shortcutApp.pos + 1; pos < list.size(); ++pos){
             list.get(pos).pos = list.get(pos).pos - 1;
             updatePosOfShortcutApp(list.get(pos), list.get(pos).pos);
         }
     }
 
-    private static void createDatabase (String url) {
+    public void updateColor(Color background, Color backgroundTitle, Color line, Color button) {
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("update Color set Background = '" + background.toString() + "' " + ", BackgroundTitle = '" + backgroundTitle.toString() + "' " + ", Line = '" + line.toString() + "' " + ", Button = '" + button.toString() + "' where ID = 2")){
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        getColor();
+    }
+
+    public void getDefaultColor () {
+        try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from Color where ID = 1")){
+            SingletonColor.singletonColor.setBackground(rs.getString("Background"));
+            SingletonColor.singletonColor.setBackgroundTitle(rs.getString("BackgroundTitle"));
+            SingletonColor.singletonColor.setLine(rs.getString("Line"));
+            SingletonColor.singletonColor.setButton(rs.getString("Button"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        updateColor(Color.valueOf(SingletonColor.singletonColor.getBackground()), Color.valueOf(SingletonColor.singletonColor.getBackgroundTitle()),Color.valueOf(SingletonColor.singletonColor.getLine()),Color.valueOf(SingletonColor.singletonColor.getButton()));
+
+    }
+
+    public void getColor () {
+        try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from Color where ID = 2")){
+            SingletonColor.singletonColor.setBackground(rs.getString("Background"));
+            SingletonColor.singletonColor.setBackgroundTitle(rs.getString("BackgroundTitle"));
+            SingletonColor.singletonColor.setLine(rs.getString("Line"));
+            SingletonColor.singletonColor.setButton(rs.getString("Button"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addFirstColor() {
+        try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from Color")) {
+            if (!rs.next()) {
+                String query = "insert into Color (ID) VALUES (null)";
+                try (PreparedStatement pstmt = conn.prepareStatement(query)){
+                    pstmt.executeUpdate();
+                    pstmt.executeUpdate();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (SQLException exp) {
+            System.out.println(exp.getMessage());
+        }
+    }
+
+    private static void createDatabase ( String url ) {
         String shortcut = "CREATE TABLE IF NOT EXISTS \"Shortcut\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Text\" REAL NOT NULL,\"Url\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
         String shortcutFolder = "CREATE TABLE IF NOT EXISTS \"ShortcutFolder\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Url\" REAL NOT NULL,\"Text\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
         String shortcutApp = "CREATE TABLE IF NOT EXISTS \"ShortcutApp\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Url\" REAL NOT NULL,\"Text\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
+        String color = "CREATE TABLE IF NOT EXISTS \"Color\" (\"ID\" INTEGER NOT NULL UNIQUE, \"Background\" REAL NOT NULL DEFAULT '0x2c2f33', \"BackgroundTitle\" INTEGER NOT NULL DEFAULT '0x23272a', \"Line\" REAL NOT NULL DEFAULT '0x7289da',\"Button\" REAL NOT NULL DEFAULT '0x7289da', PRIMARY KEY(\"ID\"))";
 
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
             stmt.execute(shortcut);
             stmt.execute(shortcutFolder);
             stmt.execute(shortcutApp);
+            stmt.execute(color);
         } catch (SQLException exp) {
             System.out.println(exp.getMessage());
         }

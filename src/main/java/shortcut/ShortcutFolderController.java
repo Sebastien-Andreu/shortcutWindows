@@ -21,6 +21,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 import javax.swing.filechooser.FileSystemView;
@@ -51,6 +53,9 @@ public class ShortcutFolderController {
     @FXML
     public Label label;
 
+    @FXML
+    public HBox hBoxShortcutFolderTitle;
+
     public ShortcutFolder shortcutFolderSelected;
     private boolean shortcutAddClicked = false;
     public boolean setInFirstPlace = false;
@@ -67,7 +72,7 @@ public class ShortcutFolderController {
     public void initialize () {
         try {
             SingletonShortcut.shortcutFolderController = this;
-
+            setColor();
             this.listShortcutFolder.addListener(this::eventListenerShortcut);
 
             database = new Database();
@@ -241,5 +246,17 @@ public class ShortcutFolderController {
             }
         }
         event.consume();
+    }
+
+    public void setColor () {
+        resetColorOfItem();
+        hBoxShortcutFolderTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;");
+        buttonAddFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+        buttonDelFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+
+        scrollPaneViewFolder.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-border-width: 0 0 3 0;");
+        showFolder.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
+
+        buttonValidAddFolder.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
     }
 }

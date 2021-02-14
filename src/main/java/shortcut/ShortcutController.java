@@ -2,20 +2,20 @@ package shortcut;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
 public class ShortcutController {
 
-    public AnchorPane root;
-
     @FXML
-    public AnchorPane viewMostUsed, viewShortcutInternet, viewShortcutFolder, viewShortcutApplication;
+    public AnchorPane viewMostUsed, viewShortcutInternet, viewShortcutFolder, viewShortcutApplication, allAppShortcut;
+
 
     @FXML
     public void initialize () {
         try {
             SingletonShortcut.shortcutController = this;
-
+            setColor();
             if (SingletonShortcut.shortcutInternetController.listShortcut.size() < 4) {
                 setViewAccessible();
             } else {
@@ -41,4 +41,7 @@ public class ShortcutController {
         viewShortcutApplication.setVisible(false);
     }
 
+    public void setColor () {
+        allAppShortcut.setStyle("-fx-background-color:"+ SingletonColor.singletonColor.getBackground() + ";");
+    }
 }

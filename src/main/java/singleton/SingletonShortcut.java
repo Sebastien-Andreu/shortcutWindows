@@ -14,4 +14,13 @@ public class SingletonShortcut {
     public static boolean freezeApp = false;
 
     private SingletonShortcut () {}
+
+    public static void updateColor() {
+        shortcutMostUsed.setColor();
+        shortcutInternetController.setColor();
+        shortcutFolderController.setColor();
+        shortcutAppController.setColor();
+        shortcutMostUsed.setColor();
+        shortcutController.setColor();
+    }
 }

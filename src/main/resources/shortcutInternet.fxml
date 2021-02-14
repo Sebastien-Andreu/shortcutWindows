@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="viewShortcutInternet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="430.0" style="-fx-background-color: #2c2f33;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shortcut.ShortcutInternetController">
+<AnchorPane fx:id="viewShortcutInternet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shortcut.ShortcutInternetController">
    <children>
-      <HBox alignment="CENTER_LEFT" onMouseClicked="#onMouseClickedHead" prefHeight="49.0" prefWidth="450.0" style="-fx-background-color: #23272a; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;">
+      <HBox fx:id="hboxTitle" alignment="CENTER_LEFT" onMouseClicked="#onMouseClickedHead" prefHeight="49.0" prefWidth="450.0" style="-fx-background-color: #23272a; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;"> <!-- OK STYLE -->
          <children>
             <Label prefHeight="30.0" prefWidth="79.0" style="-fx-padding: 0 5 0 0;" text="Internet" textFill="WHITE">
                <font>
@@ -20,8 +20,8 @@
             </Label>
             <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="363.0" style="-fx-padding: 0 20 0 0; -fx-spacing: 10;">
                <children>
-                  <Button fx:id="buttonEditShortcut" contentDisplay="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onUserWantToShowEditShortcut" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 20; -fx-background-color: #7289da;" textFill="WHITE" visible="false" />
-                  <Button fx:id="buttonDelShortcut" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="297.0" layoutY="19.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUserClickToDelShortcut" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 20; -fx-background-color: #7289da; -fx-text-alignment: center;" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true">
+                  <Button fx:id="buttonEditShortcut" contentDisplay="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onUserWantToShowEditShortcut" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 20; -fx-background-color: #7289da;" textFill="WHITE" visible="false" />  <!-- OK STYLE -->
+                  <Button fx:id="buttonDelShortcut" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="297.0" layoutY="19.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUserClickToDelShortcut" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 20; -fx-background-color: #7289da;" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true">  <!-- OK STYLE -->
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -29,7 +29,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <Button fx:id="buttonAddShortcut" defaultButton="true" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUserClickToShowAddShortcut" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 20; -fx-background-color: #7289da;" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+                  <Button fx:id="buttonAddShortcut" defaultButton="true" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUserClickToShowAddShortcut" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 20; -fx-background-color: #7289da;" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">  <!-- OK STYLE -->
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -42,9 +42,9 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <ScrollPane fx:id="scrollPaneViewShortcut" layoutY="49.0" prefHeight="262.0" prefWidth="477.0" style="-fx-background-color: transparent; -fx-border-color: #2c2f33; -fx-border-width: 0 0 3 0;">
+      <ScrollPane fx:id="scrollPaneViewShortcut" layoutY="49.0" prefHeight="262.0" prefWidth="477.0" style="-fx-background-color: transparent; -fx-border-color: #2c2f33; -fx-border-width: 0 0 3 0;"> <!-- OK -->
          <content>
-            <FlowPane fx:id="showShortcut" prefHeight="260.0" prefWidth="450.0" style="-fx-background-color: #2c2f33; -fx-hgap: 20; -fx-vgap: 12;" />
+            <FlowPane fx:id="showShortcut" prefHeight="260.0" prefWidth="450.0" style="-fx-background-color: #2c2f33; -fx-hgap: 20; -fx-vgap: 12;" /> <!-- OK -->
          </content>
       </ScrollPane>
       <AnchorPane fx:id="anchorPaneViewAddShortcut" layoutY="50.0" prefHeight="249.0" prefWidth="450.0" visible="false">
@@ -59,22 +59,22 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="inputAddText" layoutX="75.0" layoutY="55.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #23272a; -fx-text-inner-color: #ffffff;">
+            <TextField fx:id="inputAddText" layoutX="75.0" layoutY="55.0" prefHeight="25.0" prefWidth="300.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="inputAddUrl" layoutX="75.0" layoutY="129.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #23272a; -fx-text-inner-color: #ffffff;">
+            <TextField fx:id="inputAddUrl" layoutX="75.0" layoutY="129.0" prefHeight="25.0" prefWidth="300.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonValidAddShortcut" layoutX="76.0" layoutY="177.0" mnemonicParsing="false" onAction="#onUserWantToAddShortcut" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #7289da;" text="Ajouter" textFill="WHITE">
+            <Button fx:id="buttonValidAddShortcut" layoutX="76.0" layoutY="177.0" mnemonicParsing="false" onAction="#onUserWantToAddShortcut" prefHeight="25.0" prefWidth="300.0" text="Ajouter" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonValidEditShortcut" layoutX="76.0" layoutY="177.0" mnemonicParsing="false" onAction="#onUserWantToEditItems" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #7289da;" text="Modifier" textFill="WHITE" visible="false">
+            <Button fx:id="buttonValidEditShortcut" layoutX="76.0" layoutY="177.0" mnemonicParsing="false" onAction="#onUserWantToEditItems" prefHeight="25.0" prefWidth="300.0" text="Modifier" textFill="WHITE" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
