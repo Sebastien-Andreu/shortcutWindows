@@ -250,7 +250,7 @@ public class ShortcutFolderController {
 
     public void setColor () {
         resetColorOfItem();
-        hBoxShortcutFolderTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: #7289da; -fx-border-width: 0 0 3 0;");
+        hBoxShortcutFolderTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0;");
         buttonAddFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
         buttonDelFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
 
