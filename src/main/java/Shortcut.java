@@ -236,7 +236,7 @@ public class Shortcut extends Application {
     public void setTransitionParameterOpen () {
         transition = new TranslateTransition();
         transition.setFromY(130);
-        transition.setToY(350);
+        transition.setToY(320);
 
         transition.setDuration(Duration.seconds(0.0001));
         transition.setNode(anchorShortcut);
@@ -244,7 +244,7 @@ public class Shortcut extends Application {
 
     public void setTransitionParameterQuit () {
         transition = new TranslateTransition();
-        transition.setFromY(350);
+        transition.setFromY(320);
         transition.setToY(1);
 
         transition.setDuration(Duration.seconds(0.0001));

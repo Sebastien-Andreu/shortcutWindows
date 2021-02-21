@@ -28,7 +28,7 @@
                      </font></Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="443.0" style="-fx-padding: 0 0 3 5;">
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="443.0" style="-fx-padding: 0 0 3 5;">
                <children>
                   <ImageView fx:id="quitParameter" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,7 +37,7 @@
                </children></HBox>
             <AnchorPane layoutY="46.0" prefHeight="297.0" prefWidth="430.0">
                <children>
-                  <HBox fx:id="hBoxAnchorColor" alignment="CENTER" layoutY="7.0" prefHeight="28.0" prefWidth="443.0" style="-fx-border-color: #7289da ; -fx-border-width: 0 0 3 0;">
+                  <HBox fx:id="hBoxAnchorColor" alignment="CENTER" prefHeight="35.0" prefWidth="443.0" style="-fx-border-color: #7289da ; -fx-border-width: 0 0 3 0;">
                      <children>
                         <Label style="-fx-opacity: 1;" text="Gestion des couleurs" textFill="WHITE">
                            <font>
@@ -127,7 +127,7 @@
             </AnchorPane>
             <AnchorPane layoutY="350.0" prefHeight="107.0" prefWidth="443.0">
                <children>
-                  <HBox fx:id="hBoxAnchorPosition" alignment="CENTER" prefHeight="28.0" prefWidth="443.0" style="-fx-border-color: #7289da; -fx-border-width: 3 0 3 0;">
+                  <HBox fx:id="hBoxAnchorPosition" alignment="CENTER" prefHeight="35.0" prefWidth="443.0" style="-fx-border-color: #7289da; -fx-border-width: 3 0 3 0;">
                      <children>
                         <Label style="-fx-opacity: 1;" text="Position de la fenêtre" textFill="WHITE">
                            <font>

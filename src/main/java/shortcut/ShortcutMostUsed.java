@@ -36,7 +36,7 @@ public class ShortcutMostUsed {
     public AnchorPane viewMostUsed, anchorElement, anchorParameter, anchorAllElement, anchorColorViewTitle, anchorColorViewData;
 
     @FXML
-    public HBox swipeDown, hBoxViewMostUsed, hBoxAnchorParameter, hBoxAnchorColor, hBoxColorViewBorder;
+    public HBox swipeDown, hBoxViewMostUsed, hBoxAnchorParameter, hBoxAnchorColor, hBoxColorViewBorder, hBoxAnchorPosition;
 
     @FXML
     public ImageView param, quitParameter;
@@ -134,7 +134,9 @@ public class ShortcutMostUsed {
         hBoxViewMostUsed.setStyle("-fx-border-color:"+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0;");
         anchorParameter.setStyle("-fx-background-color:"+ SingletonColor.singletonColor.getBackground() + ";");
         hBoxAnchorParameter.setStyle("-fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0; -fx-background-color:"+ SingletonColor.singletonColor.getBackgroundTitle() + ";");
-        hBoxAnchorColor.setStyle("-fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0;");
+
+        hBoxAnchorColor.setStyle("-fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0; -fx-background-color:"+ SingletonColor.singletonColor.getBackgroundTitle() + ";");
+        hBoxAnchorPosition.setStyle("-fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 3 0 3 0; -fx-background-color:"+ SingletonColor.singletonColor.getBackgroundTitle() + ";");
 
         anchorColorViewTitle.setStyle("-fx-border-color: white; -fx-border-width: 1.5 1.5 1.5 1.5;");
 
