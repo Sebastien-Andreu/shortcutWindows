@@ -7,9 +7,9 @@ import element.ShortcutFolder;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 import singleton.SingletonColor;
+import singleton.SingletonPosScreen;
 import singleton.SingletonShortcut;
 
-import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -337,19 +337,55 @@ public class Database {
         }
     }
 
+    public void addFirstScreenValue() {
+        try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from ScreenPosition")) {
+            if (!rs.next()) {
+                String query = "insert into ScreenPosition (ID) VALUES (null)";
+                try (PreparedStatement pstmt = conn.prepareStatement(query)){
+                    pstmt.executeUpdate();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (SQLException exp) {
+            System.out.println(exp.getMessage());
+        }
+    }
+
+    public void updatePosScreen ( int value ) {
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("update ScreenPosition set Value = " + value + " where ID = 1;")){
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void getPosScreen () {
+        try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from ScreenPosition where ID = 1;")){
+            SingletonPosScreen.SingletonPosScreen.setValue(rs.getInt("Value"));
+            System.out.println(SingletonPosScreen.SingletonPosScreen.getValue());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private static void createDatabase ( String url ) {
         String shortcut = "CREATE TABLE IF NOT EXISTS \"Shortcut\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Text\" REAL NOT NULL,\"Url\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
         String shortcutFolder = "CREATE TABLE IF NOT EXISTS \"ShortcutFolder\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Url\" REAL NOT NULL,\"Text\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
         String shortcutApp = "CREATE TABLE IF NOT EXISTS \"ShortcutApp\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Url\" REAL NOT NULL,\"Text\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
         String color = "CREATE TABLE IF NOT EXISTS \"Color\" (\"ID\" INTEGER NOT NULL UNIQUE, \"Background\" REAL NOT NULL DEFAULT '0x2c2f33', \"BackgroundTitle\" INTEGER NOT NULL DEFAULT '0x23272a', \"Line\" REAL NOT NULL DEFAULT '0x7289da',\"Button\" REAL NOT NULL DEFAULT '0x7289da', PRIMARY KEY(\"ID\"))";
+        String screenPos = "CREATE TABLE IF NOT EXISTS \"ScreenPosition\" (\"ID\" INTEGER NOT NULL UNIQUE, \"Value\" REAL NOT NULL DEFAULT '0', PRIMARY KEY(\"ID\"))";
 
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
             stmt.execute(shortcut);
             stmt.execute(shortcutFolder);
             stmt.execute(shortcutApp);
             stmt.execute(color);
+            stmt.execute(screenPos);
         } catch (SQLException exp) {
             System.out.println(exp.getMessage());
         }
     }
+
+
 }

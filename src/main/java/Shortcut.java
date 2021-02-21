@@ -2,8 +2,11 @@ import database.Database;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Toggle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -11,6 +14,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import singleton.SingletonPosScreen;
 import singleton.SingletonShortcut;
 
 import java.io.File;
@@ -22,6 +26,7 @@ public class Shortcut extends Application {
     Database database = new Database();
 
     private double screenHeight = Screen.getPrimary().getBounds().getHeight();
+    private double screenWidth = Screen.getPrimary().getBounds().getWidth();
     public TranslateTransition transition;
 
     public Stage stage = new Stage();
@@ -35,6 +40,8 @@ public class Shortcut extends Application {
         try {
             setSaveFolder();
             database.addFirstColor();
+            database.addFirstScreenValue();
+            database.getPosScreen();
             database.getColor();
             setStage(primaryStage);
 
@@ -87,7 +94,11 @@ public class Shortcut extends Application {
         this.stage.setIconified(false);
         this.stage.setAlwaysOnTop(true);
         this.stage.setResizable(false);
-        this.stage.setX(0);
+        if (SingletonPosScreen.SingletonPosScreen.getValue() == 0) {
+            this.stage.setX(0);
+        } else {
+            this.stage.setX(screenWidth - 1);
+        }
         this.stage.setY(0);
         this.stage.setHeight(0.05);
         this.stage.setWidth(0.05);
@@ -122,6 +133,9 @@ public class Shortcut extends Application {
                     });
                 }
 
+                if (SingletonPosScreen.SingletonPosScreen.getValue() == 1) {
+                    stage.setX(screenWidth - 441);
+                }
                 stage.setHeight(0.05);
                 stage.setWidth(441);
                 transition.play();
@@ -132,6 +146,9 @@ public class Shortcut extends Application {
             if (!SingletonShortcut.freezeApp) {
                 transition.stop();
                 SingletonShortcut.shortcutController.setViewInaccessible();
+                if (SingletonPosScreen.SingletonPosScreen.getValue() == 1) {
+                    stage.setX(screenWidth - 1);
+                }
                 stage.setHeight(0.05);
                 stage.setWidth(0.05);
                 setInitializedTransition();
@@ -165,6 +182,18 @@ public class Shortcut extends Application {
             stage.setHeight(130);
             setTransitionParameterQuit();
             transition.play();
+        });
+
+        SingletonShortcut.shortcutMostUsed.groupPosScreen.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+            public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+                database.updatePosScreen(Integer.parseInt(SingletonShortcut.shortcutMostUsed.groupPosScreen.getSelectedToggle().getUserData().toString()));
+                SingletonPosScreen.SingletonPosScreen.setValue(Integer.parseInt(SingletonShortcut.shortcutMostUsed.groupPosScreen.getSelectedToggle().getUserData().toString()));
+                if (SingletonPosScreen.SingletonPosScreen.getValue() == 0) {
+                    stage.setX(0);
+                } else {
+                    stage.setX(screenWidth - 441);
+                }
+            }
         });
     }
 
@@ -207,7 +236,7 @@ public class Shortcut extends Application {
     public void setTransitionParameterOpen () {
         transition = new TranslateTransition();
         transition.setFromY(130);
-        transition.setToY(220);
+        transition.setToY(350);
 
         transition.setDuration(Duration.seconds(0.0001));
         transition.setNode(anchorShortcut);
@@ -215,7 +244,7 @@ public class Shortcut extends Application {
 
     public void setTransitionParameterQuit () {
         transition = new TranslateTransition();
-        transition.setFromY(220);
+        transition.setFromY(350);
         transition.setToY(1);
 
         transition.setDuration(Duration.seconds(0.0001));

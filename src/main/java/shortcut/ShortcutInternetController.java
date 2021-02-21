@@ -20,6 +20,8 @@ import javafx.scene.layout.HBox;
 import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
@@ -69,10 +71,36 @@ public class ShortcutInternetController {
 
             initializeListOfShortCut();
 
+            inputAddUrl.textProperty().addListener(e -> {
+                if (isURL(inputAddUrl.getText())) {
+                    try {
+                        inputAddText.setText(getDomainName(inputAddUrl.getText()));
+                    } catch (URISyntaxException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isURL(String url) {
+        try {
+            new URL(url);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static String getDomainName(String url) throws URISyntaxException {
+        URI uri = new URI(url);
+        String name = uri.getHost();
+        name = name.startsWith("www.") ? name.substring(4) : name;
+        name = name.substring(0,name.lastIndexOf('.'));
+        return (name.substring(0,1).toUpperCase()) +  (name.substring(1,name.length()));
     }
 
     private void eventListenerShortcut(ListChangeListener.Change<? extends ShortcutElement> change) {

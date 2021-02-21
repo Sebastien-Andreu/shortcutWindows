@@ -62,10 +62,6 @@ public class ShortcutApp {
                         SingletonShortcut.shortcutAppController.shortcutAppSelected = null;
                         SingletonShortcut.shortcutAppController.buttonDelApp.setVisible(false);
 
-                        Node source = (Node) event.getSource();
-                        Stage stage = (Stage) source.getScene().getWindow();
-                        stage.setHeight(0.05);
-
                         Platform.runLater(() -> {
                             try {
                                 url =  url.replace("\\", "\\\\");

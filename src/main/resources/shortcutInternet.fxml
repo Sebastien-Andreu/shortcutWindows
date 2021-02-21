@@ -49,22 +49,22 @@
       </ScrollPane>
       <AnchorPane fx:id="anchorPaneViewAddShortcut" layoutY="50.0" prefHeight="249.0" prefWidth="450.0" visible="false">
          <children>
-            <Label alignment="CENTER" layoutY="24.0" prefHeight="27.0" prefWidth="450.0" text="Nom :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutY="24.0" prefHeight="27.0" prefWidth="450.0" text="Url :" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutY="98.0" prefHeight="27.0" prefWidth="450.0" text="Url :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutY="98.0" prefHeight="27.0" prefWidth="450.0" text="Nom :" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="inputAddText" layoutX="75.0" layoutY="55.0" prefHeight="25.0" prefWidth="300.0">
+            <TextField fx:id="inputAddUrl" layoutX="75.0" layoutY="55.0" prefHeight="25.0" prefWidth="300.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="inputAddUrl" layoutX="75.0" layoutY="129.0" prefHeight="25.0" prefWidth="300.0">
+            <TextField fx:id="inputAddText" layoutX="75.0" layoutY="129.0" prefHeight="25.0" prefWidth="300.0">
                <font>
                   <Font size="14.0" />
                </font>
