@@ -180,6 +180,7 @@ public class ShortcutMostUsed {
     public void onUserChooseTitleBackgroundColor(ActionEvent event) {
         buttonResetTitle.setVisible(true);
         onUserChooseLineColor(null);
+        buttonResetLine.setVisible(false);
     }
 
     public void onUserWantToUpdateColor(ActionEvent event) {
