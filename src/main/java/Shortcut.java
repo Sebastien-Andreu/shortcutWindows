@@ -126,9 +126,11 @@ public class Shortcut extends Application {
                 transition.stop();
                 if (SingletonShortcut.shortcutInternetController.listShortcut.size() < 4) {
                     setTransitionWhenEmpty();
+                    SingletonShortcut.shortcutController.setViewAccessible();
                 } else {
                     setFirstTransition();
                     Platform.runLater(() -> {
+                        SingletonShortcut.shortcutController.setViewInaccessible();
                         SingletonShortcut.shortcutMostUsed.showListOfShortcutInternetMostUsed();
                     });
                 }

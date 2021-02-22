@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1fa9f82-50ec-43f5-beab-1da6d8808330" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/element/ShortcutFileFolder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/CopyDirectory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/picture/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shortcut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shortcut.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +38,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RunManager" selected="Gradle.shortcut [jar]">
@@ -87,13 +85,29 @@
       <option name="presentableId" value="Default" />
       <updated>1600106910198</updated>
     </task>
+    <task id="LOCAL-00001" summary=".">
+      <created>1613999671830</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613999671830</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1613235831671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613235831671" />
+    <state x="586" y="114" key="CommitChangelistDialog2" timestamp="1613999671226">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="586" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613999671226" />
     <state width="1877" height="212" key="GridCell.Tab.0.bottom" timestamp="1613919646902">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -138,10 +152,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613916992226" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1613999410463">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1613999678715">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613999410463" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613999678715" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1613999839661">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613999839661" />
     <state x="2576" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1613221447003" />
     <state x="502" y="142" width="1349" height="788" key="dock-window-1" timestamp="1613315120601">
       <screen x="0" y="0" width="1920" height="1040" />
