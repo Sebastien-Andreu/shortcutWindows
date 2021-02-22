@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1fa9f82-50ec-43f5-beab-1da6d8808330" name="Default Changelist" comment="color correction">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutMostUsed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutMostUsed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ShortcutMostUsed.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShortcutMostUsed.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcut.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcut.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutApplication.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutApplication.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutElement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutElement.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutFolder.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutFolder.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutInternet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutInternet.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614002152357</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="color correction">
+      <created>1614011755792</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614011755792</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -120,29 +129,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613235831671" />
-    <state x="586" y="114" key="CommitChangelistDialog2" timestamp="1614011679560">
+    <state x="586" y="114" key="CommitChangelistDialog2" timestamp="1614011860739">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="586" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011679560" />
-    <state width="1877" height="212" key="GridCell.Tab.0.bottom" timestamp="1614011722992">
+    <state x="586" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860739" />
+    <state width="1877" height="212" key="GridCell.Tab.0.bottom" timestamp="1614011860751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011722992" />
+    <state width="1877" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
     <state width="1877" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
-    <state width="1877" height="212" key="GridCell.Tab.0.center" timestamp="1614011722992">
+    <state width="1877" height="212" key="GridCell.Tab.0.center" timestamp="1614011860751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011722992" />
+    <state width="1877" height="212" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
     <state width="1877" height="212" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
-    <state width="1877" height="212" key="GridCell.Tab.0.left" timestamp="1614011722992">
+    <state width="1877" height="212" key="GridCell.Tab.0.left" timestamp="1614011860751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011722992" />
+    <state width="1877" height="212" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
     <state width="1877" height="212" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
-    <state width="1877" height="212" key="GridCell.Tab.0.right" timestamp="1614011722992">
+    <state width="1877" height="212" key="GridCell.Tab.0.right" timestamp="1614011860751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011722992" />
+    <state width="1877" height="212" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
     <state width="1877" height="212" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1613322275999">
       <screen x="0" y="0" width="1920" height="1040" />
