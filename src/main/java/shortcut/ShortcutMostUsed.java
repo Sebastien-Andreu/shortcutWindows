@@ -33,7 +33,7 @@ public class ShortcutMostUsed {
     public FlowPane showMostUsedShortcutInternet;
 
     @FXML
-    public AnchorPane viewMostUsed, anchorElement, anchorParameter, anchorAllElement, anchorColorViewTitle, anchorColorViewData;
+    public AnchorPane viewMostUsed, anchorElement, anchorParameter, anchorAllElement, anchorColorViewTitle, anchorColorViewData, anchorContentColor;
 
     @FXML
     public HBox swipeDown, hBoxViewMostUsed, hBoxAnchorParameter, hBoxAnchorColor, hBoxColorViewBorder, hBoxAnchorPosition;
@@ -75,6 +75,12 @@ public class ShortcutMostUsed {
             groupPosScreen.getToggles().get(1).setUserData(1);
 
             SingletonPosScreen.SingletonPosScreen.updatePos();
+
+            anchorContentColor.setMinHeight(0);
+            anchorContentColor.setMaxHeight(0);
+            anchorContentColor.setPrefHeight(0);
+//            anchorContentColor.setVisible(false);
+            anchorAllElement.requestLayout();
 
         } catch (Exception e) {
             e.printStackTrace();
