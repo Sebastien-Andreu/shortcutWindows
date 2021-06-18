@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1fa9f82-50ec-43f5-beab-1da6d8808330" name="Default Changelist" comment="color correction">
+    <list default="true" id="f1fa9f82-50ec-43f5-beab-1da6d8808330" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcut.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcut.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutApplication.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutApplication.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutElement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutElement.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutFolder.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutFolder.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shortcutInternet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shortcutInternet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shortcut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shortcut.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614011755792</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="color correction">
+      <created>1614011878856</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1614011878856</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -125,75 +136,30 @@
     <option name="LAST_COMMIT_MESSAGE" value="color correction" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1613235831671">
+    <state x="588" y="114" key="CommitChangelistDialog2" timestamp="1624039590075">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613235831671" />
-    <state x="586" y="114" key="CommitChangelistDialog2" timestamp="1614011860739">
+    <state x="588" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624039590075" />
+    <state width="1877" height="212" key="GridCell.Tab.0.bottom" timestamp="1624039590114">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="586" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860739" />
-    <state width="1877" height="212" key="GridCell.Tab.0.bottom" timestamp="1614011860751">
+    <state width="1877" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624039590114" />
+    <state width="1877" height="212" key="GridCell.Tab.0.center" timestamp="1624039590113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
-    <state width="1877" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
-    <state width="1877" height="212" key="GridCell.Tab.0.center" timestamp="1614011860751">
+    <state width="1877" height="212" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624039590113" />
+    <state width="1877" height="212" key="GridCell.Tab.0.left" timestamp="1624039590113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
-    <state width="1877" height="212" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
-    <state width="1877" height="212" key="GridCell.Tab.0.left" timestamp="1614011860751">
+    <state width="1877" height="212" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624039590113" />
+    <state width="1877" height="212" key="GridCell.Tab.0.right" timestamp="1624039590113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
-    <state width="1877" height="212" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
-    <state width="1877" height="212" key="GridCell.Tab.0.right" timestamp="1614011860751">
+    <state width="1877" height="212" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624039590113" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1624038785174">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="212" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614011860751" />
-    <state width="1877" height="212" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606157500462" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1613322275999">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613322275999" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1613322275999">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613322275999" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1613322275999">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613322275999" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1613322275999">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613322275999" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1613227109375">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613227109375" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1613916992226">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613916992226" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1614002156677">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614002156677" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1614009434282">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614009434282" />
-    <state x="2576" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1613221447003" />
-    <state x="502" y="142" width="1349" height="788" key="dock-window-1" timestamp="1613315120601">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="502" y="142" width="1349" height="788" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613315120601" />
-    <state x="2083" y="0" width="1361" height="1028" maximized="true" key="dock-window-2" timestamp="1613230114005">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2083" y="0" width="1361" height="1028" maximized="true" key="dock-window-2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613230114005" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624038785174" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/shortcut$Shortcut.ic" NAME="Shortcut Coverage Results" MODIFIED="1613231103456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
