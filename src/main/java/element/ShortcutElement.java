@@ -73,9 +73,11 @@ public class ShortcutElement {
                         SingletonShortcut.shortcutInternetController.buttonDelShortcut.setVisible(false);
                         SingletonShortcut.shortcutInternetController.buttonEditShortcut.setVisible(false);
 
-                        Node source = (Node) event.getSource();
-                        Stage stage = (Stage) source.getScene().getWindow();
-                        stage.setHeight(0.05);
+                        // use to close app when choose element
+
+//                        Node source = (Node) event.getSource();
+//                        Stage stage = (Stage) source.getScene().getWindow();
+//                        stage.setHeight(0.05);
 
                     } catch (Exception e) {
                         e.printStackTrace();
