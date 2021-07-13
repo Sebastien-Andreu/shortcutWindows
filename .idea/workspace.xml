@@ -4,32 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1fa9f82-50ec-43f5-beab-1da6d8808330" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutParameterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/shortcutParameter.fxml" afterDir="false" />
+    <list default="true" id="f1fa9f82-50ec-43f5-beab-1da6d8808330" name="Default Changelist" comment="modification affichage des paramètres&#10;modification sur le droite gauche sur l'écran&#10;ajout de la possibilité de modifier l'écran">
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shortcut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shortcut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/element/ShortcutApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/element/ShortcutApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/element/ShortcutElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/element/ShortcutElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/element/ShortcutElementMostUsed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/element/ShortcutElementMostUsed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/element/ShortcutFolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/element/ShortcutFolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutAppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutAppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutFolderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutFolderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutInternetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutInternetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutMostUsed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shortcut/ShortcutMostUsed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/singleton/SingletonColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/singleton/SingletonColor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/singleton/SingletonPosScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/singleton/SingletonPosScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/singleton/SingletonShortcut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/singleton/SingletonShortcut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ShortcutMostUsed.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShortcutMostUsed.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +54,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
-  <component name="RunManager" selected="Application.Shortcut">
+  <component name="RunManager" selected="Gradle.shortcut [jar]">
     <configuration name="Shortcut" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Shortcut" />
       <module name="shortcut.main" />
@@ -157,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624039605095</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="modification affichage des paramètres&#10;modification sur le droite gauche sur l'écran&#10;ajout de la possibilité de modifier l'écran">
+      <created>1626171277881</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1626171277881</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,7 +168,8 @@
     <MESSAGE value="." />
     <MESSAGE value="color correction" />
     <MESSAGE value="correction bug ouverture ?" />
-    <option name="LAST_COMMIT_MESSAGE" value="correction bug ouverture ?" />
+    <MESSAGE value="modification affichage des paramètres&#10;modification sur le droite gauche sur l'écran&#10;ajout de la possibilité de modifier l'écran" />
+    <option name="LAST_COMMIT_MESSAGE" value="modification affichage des paramètres&#10;modification sur le droite gauche sur l'écran&#10;ajout de la possibilité de modifier l'écran" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/shortcut$Shortcut.ic" NAME="Shortcut Coverage Results" MODIFIED="1613231103456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

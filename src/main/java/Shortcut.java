@@ -141,7 +141,6 @@ public class Shortcut extends Application {
                 SingletonShortcut.shortcutInternetController.resetColorOfItem();
                 SingletonShortcut.shortcutAppController.resetColorOfItem();
                 SingletonShortcut.shortcutFolderController.resetColorOfItem();
-                SingletonShortcut.shortcutMostUsed.onUserWantToQuitParameter();
             }
         });
 

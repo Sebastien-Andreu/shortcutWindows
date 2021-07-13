@@ -22,6 +22,7 @@ public class SingletonShortcut {
         shortcutFolderController.setColor();
         shortcutAppController.setColor();
         shortcutMostUsed.setColor();
+        shortcutParameterController.setColor();
         shortcutController.setColor();
     }
 }
