@@ -28,7 +28,7 @@ public class ShortcutElementMostUsed{
 
 
     public void resetColor () {
-        view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + ";");
+        view.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackground() + ";");
     }
 
 

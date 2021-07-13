@@ -250,13 +250,13 @@ public class ShortcutFolderController {
 
     public void setColor () {
         resetColorOfItem();
-        hBoxShortcutFolderTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0;");
-        buttonAddFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
-        buttonDelFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+        hBoxShortcutFolderTitle.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.instance.getLine() + "; -fx-border-width: 0 0 3 0;");
+        buttonAddFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.instance.getButton() + ";");
+        buttonDelFolder.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.instance.getButton() + ";");
 
-        scrollPaneViewFolder.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-border-width: 0 0 3 0;");
-        showFolder.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
+        scrollPaneViewFolder.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.instance.getBackground() + "; -fx-border-width: 0 0 3 0;");
+        showFolder.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
 
-        buttonValidAddFolder.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
+        buttonValidAddFolder.setStyle("-fx-background-color: " + SingletonColor.instance.getButton() +";");
     }
 }

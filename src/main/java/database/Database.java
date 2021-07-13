@@ -298,24 +298,24 @@ public class Database {
 
     public void getDefaultColor () {
         try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from Color where ID = 1")){
-            SingletonColor.singletonColor.setBackground(rs.getString("Background"));
-            SingletonColor.singletonColor.setBackgroundTitle(rs.getString("BackgroundTitle"));
-            SingletonColor.singletonColor.setLine(rs.getString("Line"));
-            SingletonColor.singletonColor.setButton(rs.getString("Button"));
+            SingletonColor.instance.setBackground(rs.getString("Background"));
+            SingletonColor.instance.setBackgroundTitle(rs.getString("BackgroundTitle"));
+            SingletonColor.instance.setLine(rs.getString("Line"));
+            SingletonColor.instance.setButton(rs.getString("Button"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        updateColor(Color.valueOf(SingletonColor.singletonColor.getBackground()), Color.valueOf(SingletonColor.singletonColor.getBackgroundTitle()),Color.valueOf(SingletonColor.singletonColor.getLine()),Color.valueOf(SingletonColor.singletonColor.getButton()));
+        updateColor(Color.valueOf(SingletonColor.instance.getBackground()), Color.valueOf(SingletonColor.instance.getBackgroundTitle()),Color.valueOf(SingletonColor.instance.getLine()),Color.valueOf(SingletonColor.instance.getButton()));
 
     }
 
     public void getColor () {
         try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from Color where ID = 2")){
-            SingletonColor.singletonColor.setBackground(rs.getString("Background"));
-            SingletonColor.singletonColor.setBackgroundTitle(rs.getString("BackgroundTitle"));
-            SingletonColor.singletonColor.setLine(rs.getString("Line"));
-            SingletonColor.singletonColor.setButton(rs.getString("Button"));
+            SingletonColor.instance.setBackground(rs.getString("Background"));
+            SingletonColor.instance.setBackgroundTitle(rs.getString("BackgroundTitle"));
+            SingletonColor.instance.setLine(rs.getString("Line"));
+            SingletonColor.instance.setButton(rs.getString("Button"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -362,8 +362,23 @@ public class Database {
 
     public void getPosScreen () {
         try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from ScreenPosition where ID = 1;")){
-            SingletonPosScreen.SingletonPosScreen.setValue(rs.getInt("Value"));
-            System.out.println(SingletonPosScreen.SingletonPosScreen.getValue());
+            SingletonPosScreen.instance.setValue(rs.getInt("Value"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateScreen ( int value ) {
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement("update ScreenPosition set Screen = " + value + " where ID = 1;")){
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void getScreen () {
+        try (Connection conn = connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from ScreenPosition where ID = 1;")){
+            SingletonPosScreen.instance.updateScreen(rs.getInt("Screen"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -374,7 +389,21 @@ public class Database {
         String shortcutFolder = "CREATE TABLE IF NOT EXISTS \"ShortcutFolder\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Url\" REAL NOT NULL,\"Text\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
         String shortcutApp = "CREATE TABLE IF NOT EXISTS \"ShortcutApp\" (\"ID\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\"Url\" REAL NOT NULL,\"Text\" REAL NOT NULL,\"Pos\" REAL NOT NULL)";
         String color = "CREATE TABLE IF NOT EXISTS \"Color\" (\"ID\" INTEGER NOT NULL UNIQUE, \"Background\" REAL NOT NULL DEFAULT '0x2c2f33', \"BackgroundTitle\" INTEGER NOT NULL DEFAULT '0x23272a', \"Line\" REAL NOT NULL DEFAULT '0x7289da',\"Button\" REAL NOT NULL DEFAULT '0x7289da', PRIMARY KEY(\"ID\"))";
-        String screenPos = "CREATE TABLE IF NOT EXISTS \"ScreenPosition\" (\"ID\" INTEGER NOT NULL UNIQUE, \"Value\" REAL NOT NULL DEFAULT '0', PRIMARY KEY(\"ID\"))";
+        String screenPos = "CREATE TABLE IF NOT EXISTS \"ScreenPosition\" (\"ID\" INTEGER NOT NULL UNIQUE, \"Value\" REAL NOT NULL DEFAULT '0', \"Screen\" REAL NOT NULL DEFAULT '0', PRIMARY KEY(\"ID\"))";
+
+        // to update new column
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            DatabaseMetaData md = conn.getMetaData();
+            ResultSet rs = md.getColumns(null,null,"ScreenPosition", "Screen");
+            if (!rs.next()) {
+                String update = "ALTER TABLE ScreenPosition ADD \"Screen\" REAL NOT NULL DEFAULT '0'";
+                Statement stmt = conn.createStatement();
+                stmt.execute(update);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
             stmt.execute(shortcut);

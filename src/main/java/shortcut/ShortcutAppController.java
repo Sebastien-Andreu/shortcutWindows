@@ -260,14 +260,14 @@ public class ShortcutAppController {
 
     public void setColor() {
         resetColorOfItem();
-        hboxAppTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0;");
-        buttonAddApp.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
-        buttonDelApp.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+        hboxAppTitle.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.instance.getLine() + "; -fx-border-width: 0 0 3 0;");
+        buttonAddApp.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.instance.getButton() + ";");
+        buttonDelApp.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.instance.getButton() + ";");
 
-        scrollPaneViewApp.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-border-width: 0 0 3 0;");
-        showApp.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
+        scrollPaneViewApp.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.instance.getBackground() + "; -fx-border-width: 0 0 3 0;");
+        showApp.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
 
-        buttonValidAddApp.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
-        foot.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0;");
+        buttonValidAddApp.setStyle("-fx-background-color: " + SingletonColor.instance.getButton() +";");
+        foot.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.instance.getLine() + "; -fx-border-width: 0 0 3 0;");
     }
 }

@@ -283,17 +283,17 @@ public class ShortcutInternetController {
 
     public void setColor () {
         resetColorOfItem();
-        hboxTitle.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.singletonColor.getLine() + "; -fx-border-width: 0 0 3 0;");
-        buttonAddShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
-        buttonDelShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
-        buttonEditShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.singletonColor.getButton() + ";");
+        hboxTitle.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackgroundTitle() + "; -fx-border-color: "+ SingletonColor.instance.getLine() + "; -fx-border-width: 0 0 3 0;");
+        buttonAddShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.instance.getButton() + ";");
+        buttonDelShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.instance.getButton() + ";");
+        buttonEditShortcut.setStyle("-fx-background-radius: 20; -fx-background-color: "+ SingletonColor.instance.getButton() + ";");
 
-        scrollPaneViewShortcut.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-border-width: 0 0 3 0;");
-        showShortcut.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
+        scrollPaneViewShortcut.setStyle("-fx-background-color: transparent; -fx-border-color: "+ SingletonColor.instance.getBackground() + "; -fx-border-width: 0 0 3 0;");
+        showShortcut.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackground() + "; -fx-hgap: 20; -fx-vgap: 12;");
 
-        inputAddText.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getBackgroundTitle() + "; -fx-text-inner-color: #ffffff;");
-        inputAddUrl.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getBackgroundTitle() +"; -fx-text-inner-color: #ffffff;");
-        buttonValidAddShortcut.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
-        buttonValidEditShortcut.setStyle("-fx-background-color: " + SingletonColor.singletonColor.getButton() +";");
+        inputAddText.setStyle("-fx-background-color: " + SingletonColor.instance.getBackgroundTitle() + "; -fx-text-inner-color: #ffffff;");
+        inputAddUrl.setStyle("-fx-background-color: " + SingletonColor.instance.getBackgroundTitle() +"; -fx-text-inner-color: #ffffff;");
+        buttonValidAddShortcut.setStyle("-fx-background-color: " + SingletonColor.instance.getButton() +";");
+        buttonValidEditShortcut.setStyle("-fx-background-color: " + SingletonColor.instance.getButton() +";");
     }
 }

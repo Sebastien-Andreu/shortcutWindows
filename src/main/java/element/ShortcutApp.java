@@ -4,13 +4,11 @@ import iconExtract.JIconExtract;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import singleton.SingletonColor;
 import singleton.SingletonShortcut;
 
@@ -37,7 +35,7 @@ public class ShortcutApp {
     }
 
     public void resetColor () {
-        view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackground() + ";");
+        view.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackground() + ";");
     }
 
     public AnchorPane getView() {
@@ -49,7 +47,7 @@ public class ShortcutApp {
                 SingletonShortcut.shortcutAppController.resetColorOfItem();
                 if (event.getButton().equals(MouseButton.SECONDARY)){
                     SingletonShortcut.shortcutAppController.shortcutAppSelected = this;
-                    view.setStyle("-fx-background-color: "+ SingletonColor.singletonColor.getBackgroundTitle() + ";");
+                    view.setStyle("-fx-background-color: "+ SingletonColor.instance.getBackgroundTitle() + ";");
                     SingletonShortcut.shortcutAppController.buttonDelApp.setVisible(true);
 
                     view.setOnDragDetected( e -> {

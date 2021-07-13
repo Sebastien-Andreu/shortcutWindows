@@ -5,12 +5,11 @@ import javafx.scene.paint.Color;
 
 public class SingletonColor {
 
-    public static SingletonColor singletonColor = new SingletonColor();
+    public static SingletonColor instance = new SingletonColor();
 
     private String background, backgroundTitle, line, button;
 
     private SingletonColor () {
-
     }
 
     public void setBackground(String background) {

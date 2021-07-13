@@ -42,6 +42,6 @@ public class ShortcutController {
     }
 
     public void setColor () {
-        allAppShortcut.setStyle("-fx-background-color:"+ SingletonColor.singletonColor.getBackground() + ";");
+        allAppShortcut.setStyle("-fx-background-color:"+ SingletonColor.instance.getBackground() + ";");
     }
 }

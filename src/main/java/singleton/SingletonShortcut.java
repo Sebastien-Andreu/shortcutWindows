@@ -8,6 +8,7 @@ public class SingletonShortcut {
     public static ShortcutAppController shortcutAppController;
     public static ShortcutMostUsed shortcutMostUsed;
     public static ShortcutController shortcutController;
+    public static ShortcutParameterController shortcutParameterController;
 
     public static String saveFolder;
 
